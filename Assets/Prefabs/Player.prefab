@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3270427805012203248}
   - component: {fileID: 3270427805012203249}
   - component: {fileID: 3270427805012203253}
+  - component: {fileID: 3138450308917915691}
+  - component: {fileID: 4576306229753235240}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -162,6 +164,76 @@ MonoBehaviour:
       m_Flags: 8
     m_Flags: 0
   _speed: 0.05
+--- !u!114 &3138450308917915691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270427805012203250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76cb4751f464a441820650042d41799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lightAttack:
+    m_Name: Light Attack
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f7a67554-55dd-420c-91a5-b8dfb1ed2a9d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 4f9519f3-5fde-4d6b-9ad0-078ee1e62754
+      m_Path: <Gamepad>/buttonWest
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Light Attack
+      m_Flags: 0
+    m_Flags: 0
+  _heavyAttack:
+    m_Name: Heavy Attack
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e5234116-cdd0-4196-b000-cc7a88cbd581
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _dashAttack:
+    m_Name: Dash Attack
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 76d4f28f-37c6-48e6-a33b-2dadabe216a5
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _hurtboxLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  _heavyArea: 0
+  _lightHits: 0
+  _dashDamage: 0
+--- !u!114 &4576306229753235240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270427805012203250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e3d263fc48704478b7fda0a39f15f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _comboGoal: 5
+  _lightHitsIncrease: 1
+  _heavyAreaIncrease: 0.2
+  _dashDamageIncrease: 0.2
+  _unusedLimit: 0
 --- !u!1 &4031540837594961909
 GameObject:
   m_ObjectHideFlags: 0

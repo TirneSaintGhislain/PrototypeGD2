@@ -21,9 +21,10 @@ public class AttackSystem : MonoBehaviour
     
     private EvolutionSystem _evolutionSystem;
 
-    private float _heavyArea;
-    private int _lightHits;
-    private float _dashDamage;
+    //temporarily making these public
+    public float _heavyArea;
+    public int _lightHits;
+    public float _dashDamage;
 
     private bool _disableAttack = false;
 
