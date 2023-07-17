@@ -14,9 +14,12 @@ public class AttackSystem : MonoBehaviour
     [SerializeField]
     private LayerMask _hurtboxLayer;
 
+    //Evolution System Variables
     public float HeavyArea { set => _heavyArea = value; }
     public float DashDamage { set => _dashDamage = value; }
     public int LightHits { set => _lightHits = value; }
+    
+    private EvolutionSystem _evolutionSystem;
 
     private float _heavyArea;
     private int _lightHits;
@@ -43,6 +46,8 @@ public class AttackSystem : MonoBehaviour
         _lightAttack.Enable();
         _heavyAttack.Enable();
         _dashAttack.Enable();
+
+        _evolutionSystem = GetComponent<EvolutionSystem>();
     }
     void Update()
     {
@@ -118,6 +123,8 @@ public class AttackSystem : MonoBehaviour
         if (colliders.Length > 0)
         {
             Debug.Log("Hit");
+            //0 because 0 is the LightAttack index (Heavy is 1 and Dash is 2)
+            _evolutionSystem.SuccesfulHit(0);
         }
     }
 
