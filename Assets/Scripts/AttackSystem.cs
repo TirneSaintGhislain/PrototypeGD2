@@ -123,7 +123,7 @@ public class AttackSystem : MonoBehaviour
         Collider[] colliders = Physics.OverlapBox(overlapBoxPosition, hitboxSize, Quaternion.identity, _hurtboxLayer);
         if (colliders.Length > 0)
         {
-            Debug.Log("Hit");
+            //Debug.Log("Hit");
             //0 because 0 is the LightAttack index (Heavy is 1 and Dash is 2)
             _evolutionSystem.SuccesfulHit(0);
         }
@@ -212,8 +212,6 @@ public class AttackSystem : MonoBehaviour
         //    Debug.Log("Hit");
         //}
     }
-
-
 
     void FireHeavyAttack()
     {

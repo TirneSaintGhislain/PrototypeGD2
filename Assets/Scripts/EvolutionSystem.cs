@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class EvolutionSystem : MonoBehaviour
 {
+    [SerializeField] private int _amountOfAttacks = 3;
+
+    //ideally this is temporary until we can revamp the Attack System
+    //This float is used to ensure we don't register the same Attack multiple times
+    [SerializeField]
+    private float _attackCoolDown;
+    private bool canAttack = true;
+
     [SerializeField]
     private int _comboGoal;
 
@@ -23,12 +31,16 @@ public class EvolutionSystem : MonoBehaviour
     private float _heavyAreaMiminum;
 
     [SerializeField]
-    private float _dashDamageMinimume;
+    private float _dashDamageMinimum;
 
     [SerializeField]
     private int _unusedLimit;
+    private List<int> _timesUnused = new List<int>();
 
-    private List<int> _timesUnused;
+    //The combocooldown resets a combo when it doesn't get continued
+    [SerializeField]
+    private float _comboCoolDown;
+    private float _comboTimer;
 
     private AttackSystem _attackSystem;
     private int _currentCombo;
@@ -37,32 +49,52 @@ public class EvolutionSystem : MonoBehaviour
     void Start()
     {
         _attackSystem = GetComponent<AttackSystem>();
+        for (int i = 0; i < _amountOfAttacks; i++)
+        {
+            _timesUnused.Add(0);
+        }
+    }
+
+    private void Update()
+    {
+        CountDownComboCoolDown();
+        //Debug.Log(_timesUnused[1]);
     }
 
     public void SuccesfulHit(int attackIndex)
     {
-        //Increase combo length and evolve attack when combo goal is reached
-        _currentCombo++;
-        if (_currentCombo >= _comboGoal)
+        if (canAttack)
         {
-            EvolveAttack(attackIndex);
-        }
+            //Restart Combo Timer
+            _comboTimer = 0;
 
-        //Goes over every attack and updates the Unused Amount per attack
-        foreach (int attack in _timesUnused)
-        {
-            //If the attack was used it gets reset to 0, otherwise 1 gets added
-            if (_timesUnused.IndexOf(attack) == attackIndex)
+            //Increase combo length
+            //Evolve attack when combo goal is reached, then reset combo counter
+            _currentCombo++;
+            if (_currentCombo >= _comboGoal)
             {
-                _timesUnused[attackIndex] = 0;
+                EvolveAttack(attackIndex);
+                _currentCombo = 0;
             }
-            else if (_timesUnused.IndexOf(attack) != attackIndex)
-            {
-                _timesUnused[_timesUnused.IndexOf(attack)] += 1;
-            }
-        }
 
-        CheckIfAttacksNeedToDeEvolve();
+            //Goes over every attack and updates the Unused Amount per attack
+            for (int i = 0; i < _timesUnused.Count; i++)
+            {
+                //If the attack was used it gets reset to 0, otherwise 1 gets added
+                if (i == attackIndex)
+                {
+                    _timesUnused[attackIndex] = 0;
+                }
+                else if (i != attackIndex)
+                {
+                    _timesUnused[i] += 1;
+                }
+            }
+
+            CheckIfAttacksNeedToDeEvolve();
+
+            StartCoroutine(CountDownAttackCoolDown());
+        }
     }
 
     private void EvolveAttack(int attackIndex)
@@ -90,9 +122,7 @@ public class EvolutionSystem : MonoBehaviour
         //If an attack gets unused too much it de-evolves
         for (int i = 0; i < _timesUnused.Count; i++)
         {
-            int timesUnused = _timesUnused[i];
-
-            if (timesUnused >= _unusedLimit)
+            if (_timesUnused[i] >= _unusedLimit)
             {
                 //Reset Times-Unused and De-Evolve Attack
                 _timesUnused[i] = 0;
@@ -106,18 +136,43 @@ public class EvolutionSystem : MonoBehaviour
         //Not the best way of doing this but it should work
         switch (attackIndex)
         {
+            //Only decrease the values if it stays above or at the minimum
             case 0:
-                _attackSystem._lightHits -= _lightHitsIncrease;
-                Debug.Log("Quick Attack Evolved: " + _attackSystem._lightHits);
+                if (_attackSystem._lightHits - _lightHitsIncrease > _lightHitsMinimum)
+                    _attackSystem._lightHits -= _lightHitsIncrease;
+                Debug.Log("Quick Attack De-Evolved: " + _attackSystem._lightHits);
                 break;
             case 1:
-                _attackSystem._heavyArea -= _heavyAreaIncrease;
-                Debug.Log("Strong Attack Evolved: " + _attackSystem._heavyArea);
+                if (_attackSystem._heavyArea - _heavyAreaIncrease > _heavyAreaMiminum)
+                    _attackSystem._heavyArea -= _heavyAreaIncrease;
+                Debug.Log("Strong Attack De-Evolved: " + _attackSystem._heavyArea);
                 break;
             case 2:
-                _attackSystem._dashDamage -= _dashDamageIncrease;
-                Debug.Log("Dash Attack Evolved: " + _attackSystem._dashDamage);
+                if (_attackSystem._dashDamage - _dashDamageIncrease > _dashDamageMinimum)
+                    _attackSystem._dashDamage -= _dashDamageIncrease;
+                Debug.Log("Dash Attack De-Evolved: " + _attackSystem._dashDamage);
                 break;
         }
+    }
+
+    private IEnumerator CountDownAttackCoolDown()
+    {
+        //This coroutine makes it so we don't log multiple attacks in one
+        canAttack = false;
+        yield return new WaitForSeconds(_attackCoolDown);
+        canAttack = true;
+    }
+
+    private void CountDownComboCoolDown()
+    {
+        //This timer resets the combo when it doesn't get continued
+        if (_comboTimer < _comboCoolDown)
+            _comboTimer += Time.deltaTime;
+
+        if (_comboTimer >= _comboCoolDown)
+        {
+            _currentCombo = 0;
+        }
+        //Debug.Log(_comboTimer + " " + _currentCombo);
     }
 }

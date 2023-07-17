@@ -214,9 +214,9 @@ MonoBehaviour:
   _hurtboxLayer:
     serializedVersion: 2
     m_Bits: 128
-  _heavyArea: 0
-  _lightHits: 0
-  _dashDamage: 0
+  _heavyArea: 1
+  _lightHits: 1
+  _dashDamage: 1
 --- !u!114 &4576306229753235240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,11 +229,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e3d263fc48704478b7fda0a39f15f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _amountOfAttacks: 3
+  _attackCoolDown: 0.2
   _comboGoal: 5
   _lightHitsIncrease: 1
-  _heavyAreaIncrease: 0.2
-  _dashDamageIncrease: 0.2
-  _unusedLimit: 0
+  _heavyAreaIncrease: 1
+  _dashDamageIncrease: 1
+  _lightHitsMinimum: 1
+  _heavyAreaMiminum: 1
+  _dashDamageMinimum: 1
+  _unusedLimit: 5
+  _comboCoolDown: 1
 --- !u!1 &4031540837594961909
 GameObject:
   m_ObjectHideFlags: 0
