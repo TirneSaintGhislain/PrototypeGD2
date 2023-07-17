@@ -28,7 +28,6 @@ public class MovementSystem : MonoBehaviour
     private void CheckIfMove()
     {
         Vector2 movementVector = _movement.ReadValue<Vector2>();
-        Debug.Log(movementVector);
         float xFactor = 0;
         float yFactor = 0;
         xFactor = movementVector.x;
