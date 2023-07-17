@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputSystem : MonoBehaviour
+public class MovementSystem : MonoBehaviour
 {
     [SerializeField]
     private InputAction _movement;
+
     [SerializeField]
     private float _speed;
 
@@ -21,6 +22,7 @@ public class InputSystem : MonoBehaviour
     private void Update()
     {
         CheckIfMove();
+        
     }
 
     private void CheckIfMove()
