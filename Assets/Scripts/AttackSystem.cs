@@ -124,6 +124,16 @@ public class AttackSystem : MonoBehaviour
         if (colliders.Length > 0)
         {
             //Debug.Log("Hit");
+            foreach (var collider in colliders)
+            {
+                //Checks to see if one of the colliders we hit was a player
+                if (collider.GetComponent<HealthSystem>() != null)
+                {
+                    //The 1 represents the damage of the attack, ideally this will change to a variable
+                    collider.GetComponent<HealthSystem>().GetHit(1);
+                }
+            }
+
             //0 because 0 is the LightAttack index (Heavy is 1 and Dash is 2)
             _evolutionSystem.SuccesfulHit(0);
         }

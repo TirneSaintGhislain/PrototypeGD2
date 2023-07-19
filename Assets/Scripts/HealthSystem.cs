@@ -29,13 +29,15 @@ public class HealthSystem : MonoBehaviour
         {
             _currentHealth -= damage;
 
-            if (_currentHealth <= 0)
+            if (_currentHealth < 1)
             {
                 Die();
             }
 
             //Starts the Invincibility Timer
             StartCoroutine(CountDownInvincibilityTimer());
+
+            Debug.Log(name + " got hit, current health: " + _currentHealth);
         }
     }
 
