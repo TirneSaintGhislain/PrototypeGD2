@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3270427805012203253}
   - component: {fileID: 3138450308917915691}
   - component: {fileID: 4576306229753235240}
+  - component: {fileID: 7857536069831273697}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -229,17 +230,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e3d263fc48704478b7fda0a39f15f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usingMethod1: 1
   _amountOfAttacks: 3
   _attackCoolDown: 0.2
-  _comboGoal: 5
   _lightHitsIncrease: 1
   _heavyAreaIncrease: 1
   _dashDamageIncrease: 1
   _lightHitsMinimum: 1
   _heavyAreaMiminum: 1
   _dashDamageMinimum: 1
+  _attackRatingIncrease: 2
+  _attackRatingDecrease: 1
+  _attackEvolveThreshold: 5
+  _attackDevolveThreshold: -5
+  _comboGoal: 5
   _unusedLimit: 5
   _comboCoolDown: 1
+--- !u!114 &7857536069831273697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270427805012203250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf781a64f01a0c84fbc9995f92d1d92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4031540837594961909
 GameObject:
   m_ObjectHideFlags: 0
