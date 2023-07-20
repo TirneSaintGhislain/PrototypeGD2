@@ -8,9 +8,6 @@ public class MultiplayerManager : MonoBehaviour
     private List<Color> _colorOptions = new List<Color>();
 
     [SerializeField]
-    private List<LayerMask> _hurtboxLayers = new List<LayerMask>();
-
-    [SerializeField]
     private int _playerAmount;
 
     private List<GameObject> _allPlayers = new List<GameObject>();
@@ -22,10 +19,8 @@ public class MultiplayerManager : MonoBehaviour
         _allPlayers.AddRange(GameObject.FindGameObjectsWithTag("Player"));
         int playerIndex = _allPlayers.Count - 1;
 
+        //Set the Player's default color
         GetComponent<Renderer>().material.color = _colorOptions[playerIndex];
-
-        string layerName = "Player" + (playerIndex + 1);
-        gameObject.layer = LayerMask.NameToLayer(layerName);
-        
+        GetComponent<HitstunSystem>()._defaultColor = _colorOptions[playerIndex];
     }
 }

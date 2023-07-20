@@ -286,10 +286,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackCooldown: 0.3
-  _hitStunTime: 0.1
-  _stunnedColor: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
+  _hitStunTime: 0.3
+  _stunnedColor: {r: 1, g: 0, b: 0, a: 1}
   _canAttack: 1
   _isStunned: 0
+  _defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &-5592652914788910110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,14 +304,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorOptions:
-  - {r: 0.20195799, g: 0.8773585, b: 0.23258455, a: 1}
-  - {r: 0.19999997, g: 0.72038096, b: 0.8784314, a: 1}
-  - {r: 1, g: 0.29368412, b: 0, a: 1}
-  _hurtboxLayers:
-  - serializedVersion: 2
-    m_Bits: 64
-  - serializedVersion: 2
-    m_Bits: 128
+  - {r: 0.19999997, g: 0.8784314, b: 0.4457322, a: 1}
+  - {r: 0.5147525, g: 0.19999997, b: 0.8784314, a: 1}
+  - {r: 1, g: 0.6468227, b: 0, a: 1}
   _playerAmount: 2
 --- !u!1 &4031540837594961909
 GameObject:

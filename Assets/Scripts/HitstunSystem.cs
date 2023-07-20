@@ -18,7 +18,8 @@ public class HitstunSystem : MonoBehaviour
     [HideInInspector]
     public bool _isStunned = false;
 
-    private Color _defaultColor;
+    [HideInInspector]
+    public Color _defaultColor;
 
     private void Start()
     {

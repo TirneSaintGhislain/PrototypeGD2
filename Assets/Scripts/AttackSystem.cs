@@ -12,7 +12,7 @@ public class AttackSystem : MonoBehaviour
     //[SerializeField]
     //private InputAction _dashAttack;
     [SerializeField]
-    private LayerMask _hurtboxLayer;
+    public LayerMask _hurtboxLayer;
 
     //Evolution System Variables
     public float HeavyArea { set => _heavyArea = value; }
@@ -42,28 +42,40 @@ public class AttackSystem : MonoBehaviour
 
     int _frameCounter;
 
+    //This bool decides if the Player can attack or not
+    private bool _canAttack = true;
+
     public void OnLightAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && _canAttack)
         {
             FireLightAttack();
             Debug.Log("Initiated Light attack " + name);
+
+            //Start the attack cooldown
+            StartCoroutine(GetComponent<HitstunSystem>().StartAttackCooldown());
         }
     }
     public void OnStrongAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && _canAttack)
         {
             FireHeavyAttack();
             Debug.Log("Initiated Heavy attack " + name);
+
+            //Start the attack cooldown
+            StartCoroutine(GetComponent<HitstunSystem>().StartAttackCooldown());
         }
     }
     public void OnDashAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && _canAttack)
         {
             FireDashAttack();
             Debug.Log("Initiated Dash attack " + name);
+
+            //Start the attack cooldown
+            StartCoroutine(GetComponent<HitstunSystem>().StartAttackCooldown());
         }
     }
 
@@ -78,12 +90,15 @@ public class AttackSystem : MonoBehaviour
     void Update()
     {
         if(!_disableAttack)
-        CheckAttackInput();
+            CheckAttackInput();
 
         if(_disableAttack)
         {
             AttackExecution();
         }
+
+        //Update the CanAttack Bool
+        _canAttack = GetComponent<HitstunSystem>()._canAttack;
     }
 
     void AttackExecution()
@@ -145,22 +160,23 @@ public class AttackSystem : MonoBehaviour
     {
         Vector3 hitboxSize = new Vector3(0.5f, 0.5f, 2);
         Vector3 overlapBoxPosition = transform.position + transform.forward; 
-        Collider[] colliders = Physics.OverlapBox(overlapBoxPosition, hitboxSize, Quaternion.identity, _hurtboxLayer);
+        Collider[] colliders = Physics.OverlapBox(overlapBoxPosition, hitboxSize/*, Quaternion.identity, _hurtboxLayer*/);
         if (colliders.Length > 0)
         {
             //Debug.Log("Hit");
             foreach (var collider in colliders)
             {
                 //Checks to see if one of the colliders we hit was a player
-                if (collider.GetComponent<HealthSystem>() != null)
+                //And then check if the player isn't us
+                if (collider.GetComponent<HealthSystem>() != null && collider.gameObject != gameObject)
                 {
                     //The 1 represents the damage of the attack, ideally this will change to a variable
                     collider.GetComponent<HealthSystem>().GetHit(1);
+                    //0 because 0 is the LightAttack index (Heavy is 1 and Dash is 2)
+                    _evolutionSystem.SuccesfulHit(0);
                 }
             }
 
-            //0 because 0 is the LightAttack index (Heavy is 1 and Dash is 2)
-            _evolutionSystem.SuccesfulHit(0);
         }
     }
 

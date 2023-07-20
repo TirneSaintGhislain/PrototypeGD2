@@ -38,6 +38,9 @@ public class HealthSystem : MonoBehaviour
             StartCoroutine(CountDownInvincibilityTimer());
 
             Debug.Log(name + " got hit, current health: " + _currentHealth);
+
+            //Make the character get Stunned
+            StartCoroutine(GetComponent<HitstunSystem>().StartHitStunTime());
         }
     }
 
