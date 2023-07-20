@@ -12,13 +12,16 @@ GameObject:
   - component: {fileID: 3270427805012203255}
   - component: {fileID: 3270427805012203248}
   - component: {fileID: 3270427805012203249}
+  - component: {fileID: -7068388806916457094}
   - component: {fileID: 3270427805012203253}
   - component: {fileID: 3138450308917915691}
   - component: {fileID: 4576306229753235240}
   - component: {fileID: 7857536069831273697}
+  - component: {fileID: -636263789630617033}
+  - component: {fileID: -5592652914788910110}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +106,100 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7068388806916457094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270427805012203250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 5021ce0aa45d1424581e14c098ec3205, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3270427805012203253}
+        m_TargetAssemblyTypeName: MovementSystem, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8a2e5cee-ebd5-40ba-aa40-fad2013bc913
+    m_ActionName: Player/Movement[/SwitchProControllerHID/leftStick,/XInputControllerWindows/leftStick,/SwitchProControllerHID/dpad,/XInputControllerWindows/dpad]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3138450308917915691}
+        m_TargetAssemblyTypeName: AttackSystem, Assembly-CSharp
+        m_MethodName: OnDashAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: abac1424-692b-4366-8c8a-b944d30af16d
+    m_ActionName: Player/Attack North[/SwitchProControllerHID/buttonNorth,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3138450308917915691}
+        m_TargetAssemblyTypeName: AttackSystem, Assembly-CSharp
+        m_MethodName: OnStrongAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b71bd2a4-c580-4128-b4c9-994d6dcf24dc
+    m_ActionName: Player/Attack East[/SwitchProControllerHID/buttonEast,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3138450308917915691}
+        m_TargetAssemblyTypeName: AttackSystem, Assembly-CSharp
+        m_MethodName: OnLightAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7ffdd7f6-bc27-49e2-b300-6f645c712028
+    m_ActionName: Player/Attack South[/SwitchProControllerHID/buttonSouth,/XInputControllerWindows/buttonSouth]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!114 &3270427805012203253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,55 +212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbe7b3862a21a6439a6803997a39aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movement:
-    m_Name: Movement
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ad560ebf-674e-4f7c-9194-a5eb577fae9c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 2D Vector
-      m_Id: b21f6238-c0d3-4910-ad02-f344fd69b3ca
-      m_Path: 2DVector(mode=2)
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Movement
-      m_Flags: 4
-    - m_Name: up
-      m_Id: f87657d0-7547-46ab-b31f-af8aa2cbc3af
-      m_Path: <Gamepad>/leftStick/up
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Movement
-      m_Flags: 8
-    - m_Name: down
-      m_Id: 9e58446f-2393-433d-a2db-f5d6be9f0e7a
-      m_Path: <Gamepad>/leftStick/down
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Movement
-      m_Flags: 8
-    - m_Name: left
-      m_Id: de23f1ff-6469-4e1f-8165-9caf54c3b5d4
-      m_Path: <Gamepad>/leftStick/left
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Movement
-      m_Flags: 8
-    - m_Name: right
-      m_Id: ff7ab5f9-3e2a-4530-89e5-8858aad978fc
-      m_Path: <Gamepad>/leftStick/right
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Movement
-      m_Flags: 8
-    m_Flags: 0
   _speed: 0.05
 --- !u!114 &3138450308917915691
 MonoBehaviour:
@@ -177,41 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76cb4751f464a441820650042d41799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lightAttack:
-    m_Name: Light Attack
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f7a67554-55dd-420c-91a5-b8dfb1ed2a9d
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4f9519f3-5fde-4d6b-9ad0-078ee1e62754
-      m_Path: <Gamepad>/buttonWest
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Light Attack
-      m_Flags: 0
-    m_Flags: 0
-  _heavyAttack:
-    m_Name: Heavy Attack
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: e5234116-cdd0-4196-b000-cc7a88cbd581
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  _dashAttack:
-    m_Name: Dash Attack
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 76d4f28f-37c6-48e6-a33b-2dadabe216a5
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   _hurtboxLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -258,6 +271,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf781a64f01a0c84fbc9995f92d1d92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthMax: 10
+  _invincibilityTime: 0.2
+--- !u!114 &-636263789630617033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270427805012203250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3a710c711bea224cb730e603131c691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackCooldown: 0.3
+  _hitStunTime: 0.1
+  _stunnedColor: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
+  _canAttack: 1
+  _isStunned: 0
+--- !u!114 &-5592652914788910110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270427805012203250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5760e63584117364bac4517276a29219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorOptions: []
+  _hurtboxLayers: []
+  _playerAmount: 0
 --- !u!1 &4031540837594961909
 GameObject:
   m_ObjectHideFlags: 0

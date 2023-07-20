@@ -5,12 +5,12 @@ using UnityEngine.InputSystem;
 
 public class AttackSystem : MonoBehaviour
 {
-    [SerializeField]
-    private InputAction _lightAttack;
-    [SerializeField]
-    private InputAction _heavyAttack;
-    [SerializeField]
-    private InputAction _dashAttack;
+    //[SerializeField]
+    //private InputAction _lightAttack;
+    //[SerializeField]
+    //private InputAction _heavyAttack;
+    //[SerializeField]
+    //private InputAction _dashAttack;
     [SerializeField]
     private LayerMask _hurtboxLayer;
 
@@ -42,11 +42,36 @@ public class AttackSystem : MonoBehaviour
 
     int _frameCounter;
 
+    public void OnLightAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            FireLightAttack();
+            Debug.Log("Initiated Light attack " + name);
+        }
+    }
+    public void OnStrongAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            FireHeavyAttack();
+            Debug.Log("Initiated Heavy attack " + name);
+        }
+    }
+    public void OnDashAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            FireDashAttack();
+            Debug.Log("Initiated Dash attack " + name);
+        }
+    }
+
     void Awake()
     {
-        _lightAttack.Enable();
-        _heavyAttack.Enable();
-        _dashAttack.Enable();
+        //_lightAttack.Enable();
+        //_heavyAttack.Enable();
+        //_dashAttack.Enable();
 
         _evolutionSystem = GetComponent<EvolutionSystem>();
     }
@@ -189,19 +214,20 @@ public class AttackSystem : MonoBehaviour
 
     void CheckAttackInput()
     {
-        if (_lightAttack.WasPressedThisFrame())
-        {
-            FireLightAttack();
-        }
-        if (_heavyAttack.IsPressed())
-        {
-            FireHeavyAttack();
-        }
-        if (_dashAttack.IsPressed())
-        {
-            FireDashAttack();
-        }
+        //This now gets done in events
 
+        //if (_lightAttack.WasPressedThisFrame())
+        //{
+        //    FireLightAttack();
+        //}
+        //if (_heavyAttack.IsPressed())
+        //{
+        //    FireHeavyAttack();
+        //}
+        //if (_dashAttack.IsPressed())
+        //{
+        //    FireDashAttack();
+        //}
     }
 
     void FireLightAttack()
