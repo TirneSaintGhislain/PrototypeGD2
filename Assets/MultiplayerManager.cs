@@ -13,16 +13,19 @@ public class MultiplayerManager : MonoBehaviour
     [SerializeField]
     private int _playerAmount;
 
-    private List<GameObject> _allPlayers;
+    private List<GameObject> _allPlayers = new List<GameObject>();
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         //Makes a list of all the players in the game
         _allPlayers.AddRange(GameObject.FindGameObjectsWithTag("Player"));
         int playerIndex = _allPlayers.Count - 1;
 
         GetComponent<Renderer>().material.color = _colorOptions[playerIndex];
-        gameObject.layer = _hurtboxLayers[playerIndex];
+
+        string layerName = "Player" + (playerIndex + 1);
+        gameObject.layer = LayerMask.NameToLayer(layerName);
+        
     }
 }

@@ -302,9 +302,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5760e63584117364bac4517276a29219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colorOptions: []
-  _hurtboxLayers: []
-  _playerAmount: 0
+  _colorOptions:
+  - {r: 0.20195799, g: 0.8773585, b: 0.23258455, a: 1}
+  - {r: 0.19999997, g: 0.72038096, b: 0.8784314, a: 1}
+  - {r: 1, g: 0.29368412, b: 0, a: 1}
+  _hurtboxLayers:
+  - serializedVersion: 2
+    m_Bits: 64
+  - serializedVersion: 2
+    m_Bits: 128
+  _playerAmount: 2
 --- !u!1 &4031540837594961909
 GameObject:
   m_ObjectHideFlags: 0
