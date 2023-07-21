@@ -10,7 +10,9 @@ public class MovementSystem : MonoBehaviour
     [SerializeField]
     private float _speed;
 
-    private Transform _transform;
+    private Rigidbody _rb;
+
+    public bool CanMove { get => _canMove; set => _canMove = value; }
 
     private bool _canMove = true;
     private HitstunSystem _hitstunSystem;
@@ -25,7 +27,7 @@ public class MovementSystem : MonoBehaviour
         //References the hitstun system so we can make the Player immobile when they're stunned
         _hitstunSystem = GetComponent<HitstunSystem>();
 
-        _transform = GetComponent<Transform>();
+        _rb = GetComponent<Rigidbody>();
         //_movement.Enable();
     }
 
@@ -40,10 +42,16 @@ public class MovementSystem : MonoBehaviour
     private void CheckIfMove()
     {
         Vector2 movementVector = _movement;
-        float xFactor = 0;
-        float yFactor = 0;
-        xFactor = movementVector.x;
-        yFactor = -movementVector.y;
-        _transform.Translate(new Vector3(yFactor, 0, xFactor) * _speed);
+        if(movementVector.x > 0 || movementVector.x < 0 || movementVector.y > 0 || movementVector.y <0)
+        {
+            float xFactor = movementVector.x;
+            float yFactor = -movementVector.y;
+            _rb.velocity = new Vector3(yFactor, 0, xFactor) * _speed;
+        }
+        else
+        {
+            _rb.velocity = new Vector3(0, 0, 0);
+        }
+        
     }
 }

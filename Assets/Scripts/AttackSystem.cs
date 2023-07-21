@@ -18,7 +18,7 @@ public class AttackSystem : MonoBehaviour
     public float HeavyArea { set => _heavyArea = value; }
     public float DashDamage { set => _dashDamage = value; }
     public int LightHits { set => _lightHits = value; }
-    
+
     private EvolutionSystem _evolutionSystem;
 
     //temporarily making these public
@@ -45,17 +45,7 @@ public class AttackSystem : MonoBehaviour
     //This bool decides if the Player can attack or not
     private bool _canAttack = true;
 
-    public void OnLightAttack(InputAction.CallbackContext context)
-    {
-        if (context.started && _canAttack)
-        {
-            FireLightAttack();
-            Debug.Log("Initiated Light attack " + name);
 
-            //Start the attack cooldown
-            StartCoroutine(GetComponent<HitstunSystem>().StartAttackCooldown());
-        }
-    }
     public void OnStrongAttack(InputAction.CallbackContext context)
     {
         if (context.started && _canAttack)
@@ -86,41 +76,41 @@ public class AttackSystem : MonoBehaviour
         //_dashAttack.Enable();
 
         _evolutionSystem = GetComponent<EvolutionSystem>();
+        Application.targetFrameRate = 60;
     }
-    void Update()
-    {
-        if(!_disableAttack)
-            CheckAttackInput();
+    //void Update()
+    //{
+    //    if (!_disableAttack)
+    //        CheckAttackInput();
 
-        if(_disableAttack)
-        {
-            AttackExecution();
-        }
+    //    if (_disableAttack)
+    //    {
+    //        AttackExecution();
+    //    }
 
-        //Update the CanAttack Bool
-        _canAttack = GetComponent<HitstunSystem>()._canAttack;
-    }
-
+    //    //Update the CanAttack Bool
+    //    _canAttack = GetComponent<HitstunSystem>()._canAttack;
+    //}
     void AttackExecution()
     {
-        if(!_inStartupFrames &! _inActiveFrames &! _inCooldownFrames)
+        if (!_inStartupFrames & !_inActiveFrames & !_inCooldownFrames)
         {
             _disableAttack = false;
             _frameCounter = 0;
             return;
         }
-        if(_inStartupFrames)
+        if (_inStartupFrames)
         {
-            if(IsStartupElapsed())
+            if (IsStartupElapsed())
             {
                 _inStartupFrames = false;
                 _inActiveFrames = true;
                 _frameCounter = 0;
             }
         }
-        else if(_inActiveFrames)
+        else if (_inActiveFrames)
         {
-            if(!IsActiveElapsed())
+            if (!IsActiveElapsed())
             {
                 HitDetection();
             }
@@ -132,7 +122,7 @@ public class AttackSystem : MonoBehaviour
         }
         else if (_inCooldownFrames)
         {
-            if(IsCooldownElapsed())
+            if (IsCooldownElapsed())
             {
                 _inCooldownFrames = false;
             }
@@ -142,15 +132,15 @@ public class AttackSystem : MonoBehaviour
 
     void HitDetection()
     {
-        if(_isLightAttack)
+        if (_isLightAttack)
         {
             ExecuteLightAttack();
         }
-        if(_isHeavyAttack)
+        if (_isHeavyAttack)
         {
             ExecuteHeavyAttack();
         }
-        if(_isDashAttack)
+        if (_isDashAttack)
         {
             ExecuteDashAttack();
         }
@@ -159,7 +149,7 @@ public class AttackSystem : MonoBehaviour
     void ExecuteLightAttack()
     {
         Vector3 hitboxSize = new Vector3(0.5f, 0.5f, 2);
-        Vector3 overlapBoxPosition = transform.position + transform.forward; 
+        Vector3 overlapBoxPosition = transform.position + transform.forward;
         Collider[] colliders = Physics.OverlapBox(overlapBoxPosition, hitboxSize/*, Quaternion.identity, _hurtboxLayer*/);
         if (colliders.Length > 0)
         {
@@ -283,4 +273,85 @@ public class AttackSystem : MonoBehaviour
         _activeFrames = activeFrames;
         _cooldownFrames = cooldownFrames;
     }
+
+
+    //So preferably the system fires each event in succession once the previous one has ended
+    //Is there a way to assign this in proper order?
+
+    //Have a function that draws the hitboxes depending on the parameters given by each attack event
+
+    public delegate void FirstEvent();
+    public delegate void Event2();
+    public delegate void Event3();
+    public delegate void Event4();
+    public delegate void Event5();
+    public FirstEvent _event1;
+    public Event2 _event2;
+    public Event3 _event3;
+    public Event4 _event4;
+    public Event5 _event5;
+
+    public bool ActiveAttack { get => _activeAttack; set => _activeAttack = value; }
+
+    private bool _activeAttack;
+
+    private bool _event1started = false;
+    private bool _event1ended = false;
+    private bool _event2ended = false;
+    private bool _event3ended = false;
+    private bool _event4ended = false;
+
+    private void Update()
+    {
+    }
+
+
+    public void HitDetection(float x, float y, float z)
+    {
+        Vector3 hitbox = new Vector3(x, y, z);
+        Vector3 hitboxPosition = transform.position + transform.forward;
+        hitboxPosition = new Vector3(hitboxPosition.x + x / 2, hitboxPosition.y, hitboxPosition.z);
+        Collider[] colliders = Physics.OverlapBox(hitboxPosition, hitbox, Quaternion.identity);
+
+        //Vector3 hitboxSize = new Vector3(0.5f, 0.5f, 2);
+        //Vector3 overlapBoxPosition = transform.position + transform.forward;
+        //Collider[] colliders = Physics.OverlapBox(overlapBoxPosition, hitboxSize/*, Quaternion.identity, _hurtboxLayer*/);
+        if (colliders.Length > 0)
+        {
+            //Debug.Log("Hit");
+            foreach (var collider in colliders)
+            {
+                //Checks to see if one of the colliders we hit was a player
+                //And then check if the player isn't us
+                if (collider.GetComponent<HealthSystem>() != null && collider.gameObject != gameObject)
+                {
+                    //The 1 represents the damage of the attack, ideally this will change to a variable
+                    collider.GetComponent<HealthSystem>().GetHit(1);
+                    //0 because 0 is the LightAttack index (Heavy is 1 and Dash is 2)
+                    _evolutionSystem.SuccesfulHit(0);
+                }
+            }
+
+        }
+    }
+
+    public void HitDetection(float radius)
+    {
+        Vector3 position = new Vector3(transform.position.x + radius / 2, transform.position.y, transform.position.z);
+        Collider[] colliders = Physics.OverlapSphere(position, radius);
+
+        if (colliders.Length > 0)
+        {
+            foreach (var collider in colliders)
+            {
+                if (collider.GetComponent<HealthSystem>() != null && collider.gameObject != gameObject)
+                {
+                    collider.GetComponent<HealthSystem>().GetHit(1);
+                    _evolutionSystem.SuccesfulHit(0);
+                }
+            }
+        }
+    }
 }
+
+
