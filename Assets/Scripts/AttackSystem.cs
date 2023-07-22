@@ -69,15 +69,7 @@ public class AttackSystem : MonoBehaviour
         }
     }
 
-    void Awake()
-    {
-        //_lightAttack.Enable();
-        //_heavyAttack.Enable();
-        //_dashAttack.Enable();
-
-        _evolutionSystem = GetComponent<EvolutionSystem>();
-        Application.targetFrameRate = 60;
-    }
+    
     //void Update()
     //{
     //    if (!_disableAttack)
@@ -170,17 +162,6 @@ public class AttackSystem : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        if (_inActiveFrames)
-            Gizmos.color = Color.red;
-        else
-            Gizmos.color = Color.clear;
-
-        Gizmos.matrix = Matrix4x4.TRS(transform.position + transform.forward, transform.rotation, transform.localScale);
-        Vector3 hitboxSize = new Vector3(0.5f, 0.5f, 2);
-        Gizmos.DrawCube(Vector3.zero, new Vector3(hitboxSize.x * 2, hitboxSize.y * 2, hitboxSize.z * 2));
-    }
 
     void ExecuteHeavyAttack()
     {
@@ -291,6 +272,8 @@ public class AttackSystem : MonoBehaviour
     public Event4 _event4;
     public Event5 _event5;
 
+    private Vector3 _gizmos;
+
     public bool ActiveAttack { get => _activeAttack; set => _activeAttack = value; }
 
     private bool _activeAttack;
@@ -301,17 +284,36 @@ public class AttackSystem : MonoBehaviour
     private bool _event3ended = false;
     private bool _event4ended = false;
 
+    [SerializeField]
+    private Transform _pointer;
+
+    void Awake()
+    {
+        _evolutionSystem = GetComponent<EvolutionSystem>();
+        Application.targetFrameRate = 60;
+
+    }
     private void Update()
     {
     }
+    private void OnDrawGizmos()
+    {
+        if (ActiveAttack)
+            Gizmos.color = Color.red;
+        else
+            Gizmos.color = Color.clear;
 
+        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
+        Gizmos.DrawCube(_pointer.position, _gizmos);
+    }
 
     public void HitDetection(float x, float y, float z)
     {
+        _gizmos = new Vector3(x, y, z);
         Vector3 hitbox = new Vector3(x, y, z);
-        Vector3 hitboxPosition = transform.position + transform.forward;
-        hitboxPosition = new Vector3(hitboxPosition.x + x / 2, hitboxPosition.y, hitboxPosition.z);
-        Collider[] colliders = Physics.OverlapBox(hitboxPosition, hitbox, Quaternion.identity);
+        _pointer.localPosition = new Vector3(hitbox.x / 2, 0, 0);
+        //hitboxPosition = new Vector3(hitboxPosition.x + x / 2, hitboxPosition.y, hitboxPosition.z);
+        Collider[] colliders = Physics.OverlapBox(_pointer.position, hitbox / 2, transform.rotation);
 
         //Vector3 hitboxSize = new Vector3(0.5f, 0.5f, 2);
         //Vector3 overlapBoxPosition = transform.position + transform.forward;

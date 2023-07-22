@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class MovementSystem : MonoBehaviour
 {
     private Vector2 _movement;
+    Vector2 _rotation;
 
     [SerializeField]
     private float _speed;
@@ -20,6 +21,11 @@ public class MovementSystem : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         _movement = context.ReadValue<Vector2>();
+    }
+
+    public void Rotate(InputAction.CallbackContext context)
+    {
+        _rotation = context.ReadValue<Vector2>();
     }
 
     private void Awake()
@@ -37,6 +43,27 @@ public class MovementSystem : MonoBehaviour
 
         if (_canMove)
             CheckIfMove();
+        if(!RotationDeadAngles())
+        {
+            DoRotation();
+        }
+        
+    }
+
+    bool RotationDeadAngles()
+    {
+        if(_rotation.x > 0.1f || _rotation.x < -0.1f || _rotation.y > 0.1f || _rotation.y < -0.1f)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    void DoRotation()
+    {
+        Vector3 rotationTarget = new Vector3(_rotation.x, 0, _rotation.y);
+        Quaternion toRotation = Quaternion.LookRotation(-rotationTarget, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 360);
     }
 
     private void CheckIfMove()
