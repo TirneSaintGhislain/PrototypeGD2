@@ -11,6 +11,15 @@ public class MovementSystem : MonoBehaviour
     [SerializeField]
     private float _speed;
 
+    [SerializeField]
+    private bool _automaticallyFacesOpponent;
+
+    [SerializeField]
+    private bool _dashFollowsMovement;
+
+    private Transform _opponent;
+    private bool _hasOpponent = false;
+
     private Rigidbody _rb;
 
     public bool CanMove { get => _canMove; set => _canMove = value; }
@@ -39,7 +48,16 @@ public class MovementSystem : MonoBehaviour
 
     public void Dash(float distance, Vector3 forwardDirection)
     {
-        Vector3 direction = new Vector3(forwardDirection.x * distance, 0, forwardDirection.z * distance);
+        //Dash is either in the direction the player moving or the direction they're facing
+        Vector3 direction = Vector3.zero;
+        if (_dashFollowsMovement)
+        {
+            direction = new Vector3(-_movement.y * distance, 0, _movement.x * distance);
+        }
+        else
+        {
+            direction = new Vector3(forwardDirection.x * distance, 0, forwardDirection.z * distance);
+        }
         _rb.MovePosition(transform.position + direction);
         Debug.Log(direction);
     }
@@ -58,7 +76,42 @@ public class MovementSystem : MonoBehaviour
         {
             DoRotation();
         }
+        else if (_automaticallyFacesOpponent && _hasOpponent)
+        {
+            FaceOpponent();
+        }
         
+        if (!_hasOpponent)
+        {
+            FindOpponent();
+        }
+    }
+
+    private void FindOpponent()
+    {
+        List<GameObject> allPlayers = new List<GameObject>();
+        allPlayers.AddRange(GameObject.FindGameObjectsWithTag("Player"));
+        //Debug.Log(allPlayers.Count);
+        if (allPlayers.Count > 1)
+        {
+            foreach (var player in allPlayers)
+            {
+                if (player != gameObject)
+                {
+                    _opponent = player.transform;
+                    _hasOpponent = true;
+                    Debug.Log(_opponent.position);
+                }
+            }
+        }
+    }
+
+    private void FaceOpponent()
+    {
+        //Get the direction towards the opponent
+        Vector3 direction = (_opponent.position - transform.position).normalized;
+        direction.y = 0;
+        transform.right = direction;
     }
 
     bool RotationDeadAngles()

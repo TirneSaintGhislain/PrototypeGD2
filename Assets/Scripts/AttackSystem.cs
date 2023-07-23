@@ -8,6 +8,9 @@ public class AttackSystem : MonoBehaviour
     [SerializeField]
     public LayerMask _hurtboxLayer;
 
+    [SerializeField]
+    private bool _attackingFreezesPlayer;
+
     //Evolution System Variables
     public float HeavyArea { get; set; }
     public float DashDamage { get; set; }
@@ -79,7 +82,7 @@ public class AttackSystem : MonoBehaviour
 
     void DisableMovement()
     {
-        if(ActiveAttack)
+        if(ActiveAttack && _attackingFreezesPlayer)
         {
             _movementSystem.CanMove = false;
         }

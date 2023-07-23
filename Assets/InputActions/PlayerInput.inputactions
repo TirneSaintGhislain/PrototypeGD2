@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack North",
+                    "name": "Dash Attack",
                     "type": "Button",
                     "id": "abac1424-692b-4366-8c8a-b944d30af16d",
                     "expectedControlType": "Button",
@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack East",
+                    "name": "Light Attack",
                     "type": "Button",
                     "id": "b71bd2a4-c580-4128-b4c9-994d6dcf24dc",
                     "expectedControlType": "Button",
@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack South",
+                    "name": "Heavy Attack",
                     "type": "Button",
                     "id": "7ffdd7f6-bc27-49e2-b300-6f645c712028",
                     "expectedControlType": "Button",
@@ -81,7 +81,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack North",
+                    "action": "Dash Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d822b7d-b1c4-4201-9c7d-8d5ee53a3fe7",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -92,7 +103,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack East",
+                    "action": "Light Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "671ac9cc-f556-4212-b4f1-9cf794bb1aff",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Light Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -103,7 +125,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack South",
+                    "action": "Heavy Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ab6257a-6e1a-419c-8edb-60ed83bbe73e",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heavy Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
