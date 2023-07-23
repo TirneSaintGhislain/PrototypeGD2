@@ -24,6 +24,7 @@ public class LightAttack : BaseAttack
             _attackSystem._event3 += RepeatAttacks;
             _attackSystem._event4 += StartCooldown;
             _attackSystem.ActiveAttack = true;
+            _attackSystem.CurrentAttackType = _thisAttackType;
             _attackSystem._event1.Invoke();
         }
     }
@@ -42,7 +43,7 @@ public class LightAttack : BaseAttack
     private void RepeatAttacks()
     {
         _currentHits++;
-        if(_currentHits < _attackSystem._lightHits)
+        if(_currentHits < _attackSystem.LightHits)
         {
             //_startupFinished = false;
             Debug.Log("Repeat count: " + _currentHits);

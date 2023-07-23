@@ -17,6 +17,8 @@ public abstract class BaseAttack : MonoBehaviour
     private int _activeFrames;
     [SerializeField]
     private int _cooldownFrames;
+    [SerializeField]
+    protected AttackTypes _thisAttackType;
 
     //protected bool _startupFinished = false;
     //protected bool _activeFinished = false;

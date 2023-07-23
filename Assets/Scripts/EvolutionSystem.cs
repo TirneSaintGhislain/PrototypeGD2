@@ -164,16 +164,16 @@ public class EvolutionSystem : MonoBehaviour
         switch (attackIndex)
         {
             case 0:
-                _attackSystem._lightHits += _lightHitsIncrease;
-                Debug.Log("Quick Attack Evolved: " + _attackSystem._lightHits);
+                _attackSystem.LightHits += _lightHitsIncrease;
+                Debug.Log("Quick Attack Evolved: " + _attackSystem.LightHits);
                 break;
             case 1:
-                _attackSystem._heavyArea += _heavyAreaIncrease;
-                Debug.Log("Strong Attack Evolved: " + _attackSystem._heavyArea);
+                _attackSystem.HeavyArea += _heavyAreaIncrease;
+                Debug.Log("Strong Attack Evolved: " + _attackSystem.HeavyArea);
                 break;
             case 2:
-                _attackSystem._dashDamage += _dashDamageIncrease;
-                Debug.Log("Dash Attack Evolved: " + _attackSystem._dashDamage);
+                _attackSystem.DashDamage += _dashDamageIncrease;
+                Debug.Log("Dash Attack Evolved: " + _attackSystem.DashDamage);
                 break;
         }
     }
@@ -199,19 +199,19 @@ public class EvolutionSystem : MonoBehaviour
         {
             //Only decrease the values if it stays above or at the minimum
             case 0:
-                if (_attackSystem._lightHits - _lightHitsIncrease > _lightHitsMinimum)
-                    _attackSystem._lightHits -= _lightHitsIncrease;
-                Debug.Log("Quick Attack De-Evolved: " + _attackSystem._lightHits);
+                if (_attackSystem.LightHits - _lightHitsIncrease > _lightHitsMinimum)
+                    _attackSystem.LightHits -= _lightHitsIncrease;
+                Debug.Log("Quick Attack De-Evolved: " + _attackSystem.LightHits);
                 break;
             case 1:
-                if (_attackSystem._heavyArea - _heavyAreaIncrease > _heavyAreaMiminum)
-                    _attackSystem._heavyArea -= _heavyAreaIncrease;
-                Debug.Log("Strong Attack De-Evolved: " + _attackSystem._heavyArea);
+                if (_attackSystem.HeavyArea - _heavyAreaIncrease > _heavyAreaMiminum)
+                    _attackSystem.HeavyArea -= _heavyAreaIncrease;
+                Debug.Log("Strong Attack De-Evolved: " + _attackSystem.HeavyArea);
                 break;
             case 2:
-                if (_attackSystem._dashDamage - _dashDamageIncrease > _dashDamageMinimum)
-                    _attackSystem._dashDamage -= _dashDamageIncrease;
-                Debug.Log("Dash Attack De-Evolved: " + _attackSystem._dashDamage);
+                if (_attackSystem.DashDamage - _dashDamageIncrease > _dashDamageMinimum)
+                    _attackSystem.DashDamage -= _dashDamageIncrease;
+                Debug.Log("Dash Attack De-Evolved: " + _attackSystem.DashDamage);
                 break;
         }
     }
