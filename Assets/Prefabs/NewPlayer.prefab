@@ -587,13 +587,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d959784e2649ffb41a3f40cddf343d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startupFrames: 20
-  _activeFrames: 30
+  _startupFrames: 10
+  _activeFrames: 10
   _cooldownFrames: 20
   _thisAttackType: 2
   _dashFrameDuration: 8
   _dashBaseDistance: 6
-  _hitStunTime: 0.2
+  _hitStunTime: 0.3
   _knockBackStrength: 300
   _x: 2
   _y: 0.5
