@@ -34,6 +34,8 @@ public class HitstunSystem : MonoBehaviour
     {
         //Changes the player's color to show they're stunned
         GetComponent<Renderer>().material.color = _stunnedColor;
+        GetComponent<DashAttack>().StopAttack();
+        GetComponent<HeavyAttack>().StopAttack();
 
         _canAttack = false;
         _isStunned = true;

@@ -7,6 +7,8 @@ public class HeavyAttack : BaseAttack
 {
     [SerializeField]
     private float _hitStunTime;
+    [SerializeField]
+    private float _knockBackStrength;
     [Header("Heavy Attack Base Radius")]
     [SerializeField]
     private float _baseRadius;
@@ -45,7 +47,7 @@ public class HeavyAttack : BaseAttack
 
     protected override void ActiveEvent()
     {
-        _attackSystem.HitDetection(Radius, _hitStunTime);
+        _attackSystem.HitDetection(Radius, _hitStunTime, _knockBackStrength);
     }
 
     protected override void ActiveFinishedEvent()

@@ -431,7 +431,7 @@ MonoBehaviour:
   _hurtboxLayer:
     serializedVersion: 2
     m_Bits: 128
-  _attackingFreezesPlayer: 0
+  _attackingFreezesPlayer: 1
   _pointer: {fileID: 4160087033897430993}
   _pointerMeshRenderer: {fileID: 4160087033897430994}
   _pointerMeshFilter: {fileID: 4160087033897430995}
@@ -552,6 +552,7 @@ MonoBehaviour:
   _cooldownFrames: 10
   _thisAttackType: 0
   _hitStunTime: 0.1
+  _knockBackStrength: 500
   _x: 2
   _y: 0.5
   _z: 0.5
@@ -572,6 +573,7 @@ MonoBehaviour:
   _cooldownFrames: 20
   _thisAttackType: 1
   _hitStunTime: 0.5
+  _knockBackStrength: 1000
   _baseRadius: 3
 --- !u!114 &4160087034473877103
 MonoBehaviour:
@@ -591,7 +593,8 @@ MonoBehaviour:
   _thisAttackType: 2
   _dashFrameDuration: 8
   _dashBaseDistance: 6
-  _hitStunTime: 0
+  _hitStunTime: 0.2
+  _knockBackStrength: 300
   _x: 2
   _y: 0.5
   _z: 0.5

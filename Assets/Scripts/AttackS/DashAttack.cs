@@ -12,6 +12,8 @@ public class DashAttack : BaseAttack
     private float _dashBaseDistance;
     [SerializeField]
     private float _hitStunTime;
+    [SerializeField]
+    private float _knockBackStrength;
 
     [Header("Dash Attack Hitbox")]
     [SerializeField]
@@ -78,7 +80,7 @@ public class DashAttack : BaseAttack
 
     protected override void ActiveEvent()
     {
-        _attackSystem.HitDetection(_x, _y, _z, _hitStunTime);
+        _attackSystem.HitDetection(_x, _y, _z, _hitStunTime, _knockBackStrength);
     }
 
     protected override void ActiveFinishedEvent()

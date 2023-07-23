@@ -50,7 +50,7 @@ public class MovementSystem : MonoBehaviour
     {
         //Dash is either in the direction the player moving or the direction they're facing
         Vector3 direction = Vector3.zero;
-        if (_dashFollowsMovement)
+        if (_dashFollowsMovement && _movement.magnitude > 0.1f)
         {
             direction = new Vector3(-_movement.y * distance, 0, _movement.x * distance);
         }
@@ -64,10 +64,12 @@ public class MovementSystem : MonoBehaviour
 
     private void Update()
     {
-        //_canMove = !_hitstunSystem._isStunned;
+        _canMove = !_hitstunSystem._isStunned;
 
         if (_canMove)
+        {
             CheckIfMove();
+        }
         else
         {
             _rb.velocity = new Vector3(0, 0, 0);

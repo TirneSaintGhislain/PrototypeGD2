@@ -7,6 +7,8 @@ public class LightAttack : BaseAttack
 {
     [SerializeField]
     private float _hitStunTime;
+    [SerializeField]
+    private float _knockBackStrength;
 
     [Header("Light Attack Hitbox")]
     [SerializeField]
@@ -64,7 +66,7 @@ public class LightAttack : BaseAttack
 
     protected override void ActiveEvent()
     {
-        _attackSystem.HitDetection(_x, _y, _z, _hitStunTime);
+        _attackSystem.HitDetection(_x, _y, _z, _hitStunTime, _knockBackStrength);
         Debug.Log("Active was called");
     }
 
