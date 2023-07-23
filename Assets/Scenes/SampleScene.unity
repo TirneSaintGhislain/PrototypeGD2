@@ -430,6 +430,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3270427805012203254, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
   m_PrefabInstance: {fileID: 3270427803591428659}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1539317390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539317364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf307e50a4762b4db0ce53cdeb2a3e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startupFrames: 20
+  _activeFrames: 30
+  _cooldownFrames: 20
+  _thisAttackType: 1
+  _baseRadius: 3
 --- !u!1 &1602225763
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +872,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1539317390}
+    - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1539317377}
@@ -867,12 +888,20 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StartAttack
       objectReference: {fileID: 0}
     - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Rotate
+      objectReference: {fileID: 0}
+    - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HeavyAttack, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

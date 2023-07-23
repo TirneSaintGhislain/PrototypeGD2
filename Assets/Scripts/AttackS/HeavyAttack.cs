@@ -5,40 +5,65 @@ using UnityEngine.InputSystem;
 
 public class HeavyAttack : BaseAttack
 {
+    [Header("Heavy Attack Base Radius")]
+    [SerializeField]
+    private float _baseRadius;
 
+    public float Radius { get; set; }
+
+    private void Start()
+    {
+        Radius = _baseRadius;
+    }
 
     public override void StartAttack(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if (context.started & !_attackSystem.ActiveAttack)
+        {
+            _attackSystem._event1 += StartStartup;
+            _attackSystem._event2 += StartActive;
+            _attackSystem._event3 += StartCooldown;
+            _attackSystem.ActiveAttack = true;
+            _attackSystem.CurrentAttackType = _thisAttackType;
+            _attackSystem._event1.Invoke();
+        }
+    }
+
+    protected override void Cleanup()
+    {
+        base.Cleanup();
+        _attackSystem._event1 -= StartStartup;
+        _attackSystem._event2 -= StartActive;
+        _attackSystem._event3 -= StartCooldown;
     }
 
     protected override void ActiveEvent()
     {
-        throw new System.NotImplementedException();
+        _attackSystem.HitDetection(Radius);
     }
 
     protected override void ActiveFinishedEvent()
     {
-        throw new System.NotImplementedException();
+        _attackSystem._event3.Invoke();
     }
 
     protected override void CooldownEvent()
     {
-        throw new System.NotImplementedException();
+
     }
 
     protected override void CooldownFinishedEvent()
     {
-        throw new System.NotImplementedException();
+        Cleanup();
     }
 
     protected override void StartupEvent()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     protected override void StartupFinishedEvent()
     {
-        throw new System.NotImplementedException();
+        _attackSystem._event2.Invoke();
     }
 }
