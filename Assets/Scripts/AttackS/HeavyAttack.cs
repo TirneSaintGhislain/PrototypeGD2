@@ -25,7 +25,10 @@ public class HeavyAttack : BaseAttack
             _attackSystem._event3 += StartCooldown;
             _attackSystem.ActiveAttack = true;
             _attackSystem.CurrentAttackType = _thisAttackType;
+            _attackSystem.InStartupFrames = true;
+            _attackSystem.Gizmos = new Vector3(Radius, Radius, Radius);
             _attackSystem._event1.Invoke();
+            
         }
     }
 
@@ -35,6 +38,7 @@ public class HeavyAttack : BaseAttack
         _attackSystem._event1 -= StartStartup;
         _attackSystem._event2 -= StartActive;
         _attackSystem._event3 -= StartCooldown;
+        _attackSystem.EnableMovement();
     }
 
     protected override void ActiveEvent()
@@ -45,6 +49,7 @@ public class HeavyAttack : BaseAttack
     protected override void ActiveFinishedEvent()
     {
         _attackSystem._event3.Invoke();
+        _attackSystem.InActiveFrames = false;
     }
 
     protected override void CooldownEvent()
@@ -65,5 +70,7 @@ public class HeavyAttack : BaseAttack
     protected override void StartupFinishedEvent()
     {
         _attackSystem._event2.Invoke();
+        _attackSystem.InStartupFrames = false;
+        _attackSystem.InActiveFrames = true;
     }
 }

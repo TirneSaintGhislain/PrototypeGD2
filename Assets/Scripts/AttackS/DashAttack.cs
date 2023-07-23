@@ -13,11 +13,13 @@ public class DashAttack : BaseAttack
 
     [Header("Dash Attack Hitbox")]
     [SerializeField]
-    int _x;
+    float _x;
     [SerializeField]
-    int _y;
+    float _y;
     [SerializeField]
-    int _z;
+    float _z;
+
+    private MovementSystem _movementSystem;
     public override void StartAttack(InputAction.CallbackContext context)
     {
         if (context.started & !_attackSystem.ActiveAttack)
@@ -27,24 +29,37 @@ public class DashAttack : BaseAttack
             _attackSystem._event3 += StartActive;
             _attackSystem._event4 += StartCooldown;
             _attackSystem.ActiveAttack = true;
+            _attackSystem.CurrentAttackType = _thisAttackType;
+            _attackSystem.Gizmos = new Vector3(_x, _y, _z);
             _attackSystem._event1.Invoke();
         }
+    }
+
+    private void Start()
+    {
+        _movementSystem = GetComponent<MovementSystem>();
     }
 
     private void Dash()
     {
         float dashDistance = _dashBaseDistance / _dashFrameDuration;
-        StartCoroutine(ExecuteDash(dashDistance));
+        CapsuleCollider col = GetComponent<CapsuleCollider>();
+        col.enabled = false;
+        StartCoroutine(ExecuteDash(dashDistance, transform.right));
     }
 
-    IEnumerator ExecuteDash(float dashDistance)
+    IEnumerator ExecuteDash(float dashDistance, Vector3 direction)
     {
         for(int i = 0; i < _dashFrameDuration; i++)
         {
-            //Move player rigidbody in dash direction at given speed
+            _movementSystem.Dash(dashDistance, direction);
             yield return null;
         }
+        CapsuleCollider col = GetComponent<CapsuleCollider>();
+        col.enabled = true;
+        _attackSystem.InStartupFrames = true;
         _attackSystem._event2.Invoke();
+        
     }
 
     protected override void Cleanup()
@@ -54,6 +69,7 @@ public class DashAttack : BaseAttack
         _attackSystem._event2 -= StartStartup;
         _attackSystem._event3 -= StartActive;
         _attackSystem._event4 -= StartCooldown;
+        _attackSystem.EnableMovement();
     }
 
     protected override void ActiveEvent()
@@ -64,6 +80,7 @@ public class DashAttack : BaseAttack
     protected override void ActiveFinishedEvent()
     {
         _attackSystem._event4.Invoke();
+        _attackSystem.InActiveFrames = false;
     }
 
     protected override void CooldownEvent()
@@ -84,5 +101,7 @@ public class DashAttack : BaseAttack
     protected override void StartupFinishedEvent()
     {
         _attackSystem._event3.Invoke();
+        _attackSystem.InStartupFrames = false;
+        _attackSystem.InActiveFrames = true;
     }
 }

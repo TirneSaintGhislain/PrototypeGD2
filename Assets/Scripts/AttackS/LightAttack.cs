@@ -25,7 +25,10 @@ public class LightAttack : BaseAttack
             _attackSystem._event4 += StartCooldown;
             _attackSystem.ActiveAttack = true;
             _attackSystem.CurrentAttackType = _thisAttackType;
+            _attackSystem.InStartupFrames = true;
+            _attackSystem.Gizmos = new Vector3(_x, _y, _z);
             _attackSystem._event1.Invoke();
+            
         }
     }
 
@@ -37,6 +40,7 @@ public class LightAttack : BaseAttack
         _attackSystem._event3 -= RepeatAttacks;
         _attackSystem._event4 -= StartCooldown;
         _currentHits = 0;
+        _attackSystem.EnableMovement();
         Debug.Log("Cleanup was called");
     }
 
@@ -73,10 +77,13 @@ public class LightAttack : BaseAttack
     protected override void StartupFinishedEvent()
     {
         _attackSystem._event2.Invoke();
+        _attackSystem.InStartupFrames = false;
+        _attackSystem.InActiveFrames = true;
     }
     protected override void ActiveFinishedEvent()
     {
         _attackSystem._event3.Invoke();
+        _attackSystem.InActiveFrames = false;
     }
     protected override void CooldownFinishedEvent()
     {

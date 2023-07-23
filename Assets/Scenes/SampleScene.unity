@@ -447,6 +447,27 @@ MonoBehaviour:
   _cooldownFrames: 20
   _thisAttackType: 1
   _baseRadius: 3
+--- !u!114 &1539317391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539317364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d959784e2649ffb41a3f40cddf343d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startupFrames: 20
+  _activeFrames: 30
+  _cooldownFrames: 20
+  _thisAttackType: 2
+  _dashFrameDuration: 8
+  _dashBaseDistance: 6
+  _x: 2
+  _y: 0.5
+  _z: 0.5
 --- !u!1 &1602225763
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,6 +897,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1539317390}
     - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1539317391}
+    - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1539317377}
@@ -892,6 +917,10 @@ PrefabInstance:
       value: StartAttack
       objectReference: {fileID: 0}
     - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StartAttack
       objectReference: {fileID: 0}
@@ -902,6 +931,10 @@ PrefabInstance:
     - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: HeavyAttack, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DashAttack, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: -7068388806916457094, guid: 02ee17998baab3f44bca02bc5e315b92, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

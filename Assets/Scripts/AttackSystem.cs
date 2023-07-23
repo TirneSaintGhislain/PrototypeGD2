@@ -14,6 +14,7 @@ public class AttackSystem : MonoBehaviour
     public int LightHits { get;  set; }
 
     private EvolutionSystem _evolutionSystem;
+    private MovementSystem _movementSystem;
 
     //So preferably the system fires each event in succession once the previous one has ended
     //Is there a way to assign this in proper order?
@@ -35,6 +36,11 @@ public class AttackSystem : MonoBehaviour
 
     public bool ActiveAttack { get => _activeAttack; set => _activeAttack = value; }
     public AttackTypes CurrentAttackType { get => _attackType; set => _attackType = value; }
+
+    public Vector3 Gizmos { set => _gizmos = value; }
+
+    public bool InStartupFrames { get; set; }
+    public bool InActiveFrames { get; set; }
 
     private AttackTypes _attackType;
     private bool _activeAttack;
@@ -59,16 +65,50 @@ public class AttackSystem : MonoBehaviour
     void Awake()
     {
         _evolutionSystem = GetComponent<EvolutionSystem>();
+        _movementSystem = GetComponent<MovementSystem>();
         Application.targetFrameRate = 60;
+        InStartupFrames = false;
+        InActiveFrames = false;
 
     }
     private void Update()
     {
-        if (_activeAttack)
+        DrawHitbox();
+        DisableMovement();
+    }
+
+    void DisableMovement()
+    {
+        if(ActiveAttack)
+        {
+            _movementSystem.CanMove = false;
+        }
+    }
+
+    public void EnableMovement()
+    {
+        _movementSystem.CanMove = true;
+    }
+
+    void DrawHitbox()
+    {
+        if(InStartupFrames)
+        {
+            Material mat = _materials[(int)_attackType];
+            mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, 0.4f);
+            _materials[(int)_attackType].color = mat.color;
+            _pointerMeshRenderer.enabled = true;
+            _pointerMeshRenderer.material = _materials[(int)_attackType];
+            _pointerMeshFilter.mesh = _meshes[(int)_attackType];
+            _pointer.localScale = _gizmos;
+        }
+        else if (InActiveFrames)
         {
             // Can also be made visible only in the editor:
             // put #if UNITY_EDITOR above the if statement and #endif after the brackets of the else statement
-
+            Material mat = _materials[(int)_attackType];
+            mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, 0.9f);
+            _materials[(int)_attackType].color = mat.color;
             _pointerMeshRenderer.enabled = true;
             _pointerMeshRenderer.material = _materials[(int)_attackType];
             _pointerMeshFilter.mesh = _meshes[(int)_attackType];

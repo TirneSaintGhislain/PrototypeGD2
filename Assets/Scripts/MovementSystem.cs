@@ -37,12 +37,23 @@ public class MovementSystem : MonoBehaviour
         //_movement.Enable();
     }
 
+    public void Dash(float distance, Vector3 forwardDirection)
+    {
+        Vector3 direction = new Vector3(forwardDirection.x * distance, 0, forwardDirection.z * distance);
+        _rb.MovePosition(transform.position + direction);
+        Debug.Log(direction);
+    }
+
     private void Update()
     {
-        _canMove = !_hitstunSystem._isStunned;
+        //_canMove = !_hitstunSystem._isStunned;
 
         if (_canMove)
             CheckIfMove();
+        else
+        {
+            _rb.velocity = new Vector3(0, 0, 0);
+        }
         if(!RotationDeadAngles())
         {
             DoRotation();
