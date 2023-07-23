@@ -71,6 +71,8 @@ public class DashAttack : BaseAttack
         _attackSystem._event2 -= StartStartup;
         _attackSystem._event3 -= StartActive;
         _attackSystem._event4 -= StartCooldown;
+        CapsuleCollider col = GetComponent<CapsuleCollider>();
+        col.isTrigger = false;
         _attackSystem.EnableMovement();
     }
 

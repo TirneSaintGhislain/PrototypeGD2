@@ -39,9 +39,8 @@ public abstract class BaseAttack : MonoBehaviour
     protected virtual void Cleanup()
     {
         _attackSystem.ActiveAttack = false;
-        //_startupFinished = false;
-        //_cooldownFinished = false;
-        //_activeFinished = false;
+        _attackSystem.InActiveFrames = false;
+        _attackSystem.InStartupFrames = false;
     }
 
     public void StartStartup()
