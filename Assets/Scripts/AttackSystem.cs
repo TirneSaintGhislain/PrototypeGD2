@@ -120,7 +120,7 @@ public class AttackSystem : MonoBehaviour
         }
     }
 
-    public void HitDetection(float x, float y, float z)
+    public void HitDetection(float x, float y, float z, float stunTime)
     {
         _gizmos = new Vector3(x, y, z);
         Vector3 hitbox = new Vector3(x, y, z);
@@ -136,7 +136,7 @@ public class AttackSystem : MonoBehaviour
                 if (collider.GetComponent<HealthSystem>() != null && collider.gameObject != gameObject)
                 {
                     //The 1 represents the damage of the attack, ideally this will change to a variable
-                    collider.GetComponent<HealthSystem>().GetHit(1);
+                    collider.GetComponent<HealthSystem>().GetHit(1, stunTime);
                     //0 because 0 is the LightAttack index (Heavy is 1 and Dash is 2)
                     _evolutionSystem.SuccesfulHit((int)_attackType);
                 }
@@ -145,7 +145,7 @@ public class AttackSystem : MonoBehaviour
         }
     }
 
-    public void HitDetection(float radius)
+    public void HitDetection(float radius, float hitStunTime)
     {
         _gizmos = new Vector3(radius, radius, radius);
         _pointer.localPosition = new Vector3(radius / 2, 0, 0);
@@ -158,7 +158,7 @@ public class AttackSystem : MonoBehaviour
             {
                 if (collider.GetComponent<HealthSystem>() != null && collider.gameObject != gameObject)
                 {
-                    collider.GetComponent<HealthSystem>().GetHit(1);
+                    collider.GetComponent<HealthSystem>().GetHit(1, hitStunTime);
                     _evolutionSystem.SuccesfulHit((int)_attackType);
                 }
             }

@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class HeavyAttack : BaseAttack
 {
+    [SerializeField]
+    private float _hitStunTime;
     [Header("Heavy Attack Base Radius")]
     [SerializeField]
     private float _baseRadius;
@@ -43,7 +45,7 @@ public class HeavyAttack : BaseAttack
 
     protected override void ActiveEvent()
     {
-        _attackSystem.HitDetection(Radius);
+        _attackSystem.HitDetection(Radius, _hitStunTime);
     }
 
     protected override void ActiveFinishedEvent()

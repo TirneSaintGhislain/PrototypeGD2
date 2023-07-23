@@ -23,9 +23,10 @@ public class HealthSystem : MonoBehaviour
         
     }
 
-    public void GetHit(int damage)
+    public void GetHit(int damage, float stunTime)
     {
-        if (_canGetHit)
+        bool isStunned = GetComponent<HitstunSystem>()._isStunned;
+        if (_canGetHit && !isStunned)
         {
             _currentHealth -= damage;
 
@@ -35,12 +36,12 @@ public class HealthSystem : MonoBehaviour
             }
 
             //Starts the Invincibility Timer
-            StartCoroutine(CountDownInvincibilityTimer());
+            //StartCoroutine(CountDownInvincibilityTimer());
 
             Debug.Log(name + " got hit, current health: " + _currentHealth);
 
             //Make the character get Stunned
-            StartCoroutine(GetComponent<HitstunSystem>().StartHitStunTime());
+            StartCoroutine(GetComponent<HitstunSystem>().StartHitStunTime(stunTime));
         }
     }
 

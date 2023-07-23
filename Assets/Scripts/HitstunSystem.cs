@@ -8,9 +8,6 @@ public class HitstunSystem : MonoBehaviour
     private float _attackCooldown;
 
     [SerializeField]
-    private float _hitStunTime;
-
-    [SerializeField]
     private Color _stunnedColor;
 
     [HideInInspector]
@@ -33,7 +30,7 @@ public class HitstunSystem : MonoBehaviour
         _canAttack = true;
     }
 
-    public IEnumerator StartHitStunTime()
+    public IEnumerator StartHitStunTime(float stunTime)
     {
         //Changes the player's color to show they're stunned
         GetComponent<Renderer>().material.color = _stunnedColor;
@@ -41,7 +38,7 @@ public class HitstunSystem : MonoBehaviour
         _canAttack = false;
         _isStunned = true;
 
-        yield return new WaitForSeconds(_hitStunTime);
+        yield return new WaitForSeconds(stunTime);
 
         GetComponent<Renderer>().material.color = _defaultColor;
 

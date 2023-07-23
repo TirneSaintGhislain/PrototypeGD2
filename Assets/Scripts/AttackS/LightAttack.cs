@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class LightAttack : BaseAttack
 {
+    [SerializeField]
+    private float _hitStunTime;
+
     [Header("Light Attack Hitbox")]
     [SerializeField]
     private float _x;
@@ -61,7 +64,7 @@ public class LightAttack : BaseAttack
 
     protected override void ActiveEvent()
     {
-        _attackSystem.HitDetection(_x, _y, _z);
+        _attackSystem.HitDetection(_x, _y, _z, _hitStunTime);
         Debug.Log("Active was called");
     }
 
