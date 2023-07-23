@@ -46,7 +46,7 @@ public class DashAttack : BaseAttack
     {
         float dashDistance = _dashBaseDistance / _dashFrameDuration;
         CapsuleCollider col = GetComponent<CapsuleCollider>();
-        col.enabled = false;
+        col.isTrigger = true;
         StartCoroutine(ExecuteDash(dashDistance, transform.right));
     }
 
@@ -58,7 +58,7 @@ public class DashAttack : BaseAttack
             yield return null;
         }
         CapsuleCollider col = GetComponent<CapsuleCollider>();
-        col.enabled = true;
+        col.isTrigger = false;
         _attackSystem.InStartupFrames = true;
         _attackSystem._event2.Invoke();
         

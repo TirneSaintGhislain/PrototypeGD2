@@ -31,7 +31,11 @@ public abstract class BaseAttack : MonoBehaviour
 
     public abstract void StartAttack(InputAction.CallbackContext context);
 
-
+    public virtual void StopAttack()
+    {
+        StopAllCoroutines();
+        Cleanup();
+    }
     protected virtual void Cleanup()
     {
         _attackSystem.ActiveAttack = false;
