@@ -176,6 +176,8 @@ public class EvolutionSystem : MonoBehaviour
                 Debug.Log("Dash Attack Evolved: " + _attackSystem.DashDamage);
                 break;
         }
+
+        GetComponent<AudioSystem>().PlayEvolvedSound();
     }
 
     private void CheckIfAttacksNeedToDeEvolve()

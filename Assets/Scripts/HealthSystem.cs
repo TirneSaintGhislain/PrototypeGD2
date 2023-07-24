@@ -69,6 +69,8 @@ public class HealthSystem : MonoBehaviour
 
             //Make the character get Stunned
             StartCoroutine(GetComponent<HitstunSystem>().StartHitStunTime(stunTime));
+
+            GetComponent<AudioSystem>().PlayHurtSound();
         }
     }
 

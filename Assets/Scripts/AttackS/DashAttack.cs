@@ -81,6 +81,7 @@ public class DashAttack : BaseAttack
     protected override void ActiveEvent()
     {
         _attackSystem.HitDetection(_x, _y, _z, _hitStunTime, _knockBackStrength);
+        GetComponent<AudioSystem>().PlayDashAttack();
     }
 
     protected override void ActiveFinishedEvent()
