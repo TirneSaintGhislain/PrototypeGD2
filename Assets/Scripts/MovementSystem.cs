@@ -19,10 +19,12 @@ public class MovementSystem : MonoBehaviour
 
     private Transform _opponent;
     private bool _hasOpponent = false;
+    private bool _halfMovement = false;
 
     private Rigidbody _rb;
 
     public bool CanMove { get => _canMove; set => _canMove = value; }
+    public bool HalfMovement { get => _halfMovement; set => _halfMovement = value; }
 
     private bool _canMove = true;
     private HitstunSystem _hitstunSystem;
@@ -135,6 +137,10 @@ public class MovementSystem : MonoBehaviour
     private void CheckIfMove()
     {
         Vector2 movementVector = _movement;
+        if(_halfMovement)
+        {
+            movementVector = movementVector / 2;
+        }
         if(movementVector.x > 0 || movementVector.x < 0 || movementVector.y > 0 || movementVector.y <0)
         {
             float xFactor = movementVector.x;
