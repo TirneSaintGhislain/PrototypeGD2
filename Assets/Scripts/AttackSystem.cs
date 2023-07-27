@@ -11,6 +11,9 @@ public class AttackSystem : MonoBehaviour
     [SerializeField]
     private bool _attackingFreezesPlayer;
 
+    [SerializeField]
+    private bool _attackHalfMovement;
+
     //Evolution System Variables
     public float HeavyArea { get; set; }
     public float DashDamage { get; set; }
@@ -77,14 +80,22 @@ public class AttackSystem : MonoBehaviour
     private void Update()
     {
         DrawHitbox();
-        DisableMovement();
+        ChangeMovement();
     }
 
-    void DisableMovement()
+    void ChangeMovement()
     {
         if(ActiveAttack && _attackingFreezesPlayer)
         {
             _movementSystem.CanMove = false;
+        }
+        else if(ActiveAttack && _attackHalfMovement)
+        {
+            _movementSystem.HalfMovement = true;
+        }
+        else
+        {
+            _movementSystem.HalfMovement = false;
         }
     }
 

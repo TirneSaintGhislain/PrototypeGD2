@@ -14,6 +14,8 @@ public class DashAttack : BaseAttack
     private float _hitStunTime;
     [SerializeField]
     private float _knockBackStrength;
+    [SerializeField]
+    private bool _noFollowUp = false;
 
     [Header("Dash Attack Hitbox")]
     [SerializeField]
@@ -61,8 +63,16 @@ public class DashAttack : BaseAttack
         }
         CapsuleCollider col = GetComponent<CapsuleCollider>();
         col.isTrigger = false;
-        _attackSystem.InStartupFrames = true;
-        _attackSystem._event2.Invoke();
+        if(!_noFollowUp)
+        {
+            _attackSystem.InStartupFrames = true;
+            _attackSystem._event2.Invoke();
+        }
+        else
+        {
+            Cleanup();
+        }
+        
     }
 
     protected override void Cleanup()
@@ -79,7 +89,7 @@ public class DashAttack : BaseAttack
 
     protected override void ActiveEvent()
     {
-        _attackSystem.HitDetection(_x, _y, _z, _hitStunTime, _knockBackStrength, true);
+        _attackSystem.HitDetection(_x, _y, _z, _hitStunTime, _knockBackStrength);
     }
 
     protected override void ActiveFinishedEvent()
