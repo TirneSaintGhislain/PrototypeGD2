@@ -220,7 +220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4160087034577734689}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.83, y: 1.5, z: 1.92}
+  m_LocalPosition: {x: 4.03, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbe7b3862a21a6439a6803997a39aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 9
+  _speed: 6
   _automaticallyFacesOpponent: 1
   _dashFollowsMovement: 1
 --- !u!114 &4564255503657642744
@@ -461,7 +461,7 @@ MonoBehaviour:
   _amountOfAttacks: 3
   _attackCoolDown: 0.2
   _lightHitsIncrease: 1
-  _heavyAreaIncrease: 1
+  _heavyAreaIncrease: 2
   _dashDamageIncrease: 1
   _lightHitsMinimum: 1
   _heavyAreaMiminum: 1
@@ -470,8 +470,8 @@ MonoBehaviour:
   _attackRatingDecrease: 1
   _attackEvolveThreshold: 5
   _attackDevolveThreshold: -5
-  _comboGoal: 5
-  _unusedLimit: 5
+  _comboGoal: 3
+  _unusedLimit: 3
   _comboCoolDown: 1
 --- !u!114 &8778341078881957426
 MonoBehaviour:
@@ -535,7 +535,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 1
 --- !u!114 &4160087034473877089
 MonoBehaviour:
@@ -558,6 +558,7 @@ MonoBehaviour:
   _x: 2
   _y: 0.5
   _z: 0.5
+  _canEvolve: 1
 --- !u!114 &4160087034473877102
 MonoBehaviour:
   m_ObjectHideFlags: 0

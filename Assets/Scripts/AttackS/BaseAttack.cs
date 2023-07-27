@@ -69,7 +69,6 @@ public abstract class BaseAttack : MonoBehaviour
             CooldownEvent();
             yield return null;
         }
-        Debug.Log("Cooldown Finished");
         CooldownFinishedEvent();
     }
     private IEnumerator ActiveFrames()
@@ -79,7 +78,6 @@ public abstract class BaseAttack : MonoBehaviour
             ActiveEvent();
             yield return null;
         }
-        Debug.Log("Active Finished");
         ActiveFinishedEvent();
     }
     private IEnumerator StartupFrames()
@@ -89,7 +87,6 @@ public abstract class BaseAttack : MonoBehaviour
             StartupEvent();
             yield return null;
         }
-        Debug.Log("Startup Finished");
         StartupFinishedEvent();
     }
 }

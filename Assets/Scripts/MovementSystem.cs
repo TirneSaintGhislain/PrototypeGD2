@@ -64,7 +64,7 @@ public class MovementSystem : MonoBehaviour
 
     private void Update()
     {
-        _canMove = !_hitstunSystem._isStunned;
+        _canMove = _canMove && !_hitstunSystem._isStunned;
 
         if (_canMove)
         {

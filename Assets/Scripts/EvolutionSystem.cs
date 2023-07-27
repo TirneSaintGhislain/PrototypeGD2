@@ -73,9 +73,9 @@ public class EvolutionSystem : MonoBehaviour
         //Debug.Log(_timesUnused[1]);
     }
 
-    public void SuccesfulHit(int attackIndex)
+    public void SuccesfulHit(int attackIndex, bool canEvolve)
     {
-        if (canAttack)
+        if (canAttack && canEvolve)
         {
             if (_usingMethod1)
             {

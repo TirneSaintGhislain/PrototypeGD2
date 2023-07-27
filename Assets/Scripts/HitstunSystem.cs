@@ -45,5 +45,6 @@ public class HitstunSystem : MonoBehaviour
 
         _canAttack = true;
         _isStunned = false;
+        GetComponent<MovementSystem>().CanMove = true;
     }
 }
