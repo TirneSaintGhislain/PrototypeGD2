@@ -58,7 +58,7 @@ public class HealthSystem : MonoBehaviour
 
             if (_currentHealth < 1)
             {
-                Die();
+                StartCoroutine(Die());
             }
 
             KnockBack(knockBackStrength);
@@ -82,9 +82,11 @@ public class HealthSystem : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(knockBackForce);
     }
 
-    private void Die()
+    private IEnumerator Die()
     {
         Debug.Log(name + " loses");
+        Destroy(gameObject);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

@@ -26,7 +26,7 @@ public class EvolutionSystem : MonoBehaviour
     [SerializeField]
     private int _lightHitsMinimum;
     [SerializeField]
-    private float _heavyAreaMiminum;
+    private float _heavyAreaMininum;
     [SerializeField]
     private float _dashDamageMinimum;
 
@@ -59,6 +59,11 @@ public class EvolutionSystem : MonoBehaviour
     void Start()
     {
         _attackSystem = GetComponent<AttackSystem>();
+        _attackSystem.LightHits = _lightHitsMinimum;
+
+        //Do this in attacksystem
+        GetComponent<HeavyAttack>().Radius = _heavyAreaMininum;
+        GetComponent<AttackSystem>().DashDamage = _dashDamageMinimum;
         //Initialise the Lists
         for (int i = 0; i < _amountOfAttacks; i++)
         {
@@ -206,7 +211,7 @@ public class EvolutionSystem : MonoBehaviour
                 Debug.Log("Quick Attack De-Evolved: " + _attackSystem.LightHits);
                 break;
             case 1:
-                if (_attackSystem.HeavyArea - _heavyAreaIncrease > _heavyAreaMiminum)
+                if (_attackSystem.HeavyArea - _heavyAreaIncrease > _heavyAreaMininum)
                     _attackSystem.HeavyArea -= _heavyAreaIncrease;
                 Debug.Log("Strong Attack De-Evolved: " + _attackSystem.HeavyArea);
                 break;

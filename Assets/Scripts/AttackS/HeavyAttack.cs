@@ -9,9 +9,8 @@ public class HeavyAttack : BaseAttack
     private float _hitStunTime;
     [SerializeField]
     private float _knockBackStrength;
-    [Header("Heavy Attack Base Radius")]
-    [SerializeField]
-    private float _baseRadius;
+    [HideInInspector]
+    public float _baseRadius;
 
     public float Radius { get; set; }
 
@@ -19,7 +18,6 @@ public class HeavyAttack : BaseAttack
     {
         Radius = _baseRadius;
     }
-
     public override void StartAttack(InputAction.CallbackContext context)
     {
         if (context.started & !_attackSystem.ActiveAttack)

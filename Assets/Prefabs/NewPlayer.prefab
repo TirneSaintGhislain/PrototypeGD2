@@ -434,6 +434,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _attackingFreezesPlayer: 1
+  _attackHalfMovement: 0
   _pointer: {fileID: 4160087033897430993}
   _pointerMeshRenderer: {fileID: 4160087033897430994}
   _pointerMeshFilter: {fileID: 4160087033897430995}
@@ -457,14 +458,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e3d263fc48704478b7fda0a39f15f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _usingMethod1: 1
+  _usingMethod1: 0
   _amountOfAttacks: 3
   _attackCoolDown: 0.2
   _lightHitsIncrease: 1
   _heavyAreaIncrease: 2
   _dashDamageIncrease: 1
   _lightHitsMinimum: 1
-  _heavyAreaMiminum: 1
+  _heavyAreaMininum: 1.5
   _dashDamageMinimum: 1
   _attackRatingIncrease: 2
   _attackRatingDecrease: 1
@@ -472,7 +473,7 @@ MonoBehaviour:
   _attackDevolveThreshold: -5
   _comboGoal: 3
   _unusedLimit: 3
-  _comboCoolDown: 1
+  _comboCoolDown: 2
 --- !u!114 &8778341078881957426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,7 +578,7 @@ MonoBehaviour:
   _thisAttackType: 1
   _hitStunTime: 0.5
   _knockBackStrength: 1000
-  _baseRadius: 3
+  _baseRadius: 1.5
 --- !u!114 &4160087034473877103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,6 +599,7 @@ MonoBehaviour:
   _dashBaseDistance: 6
   _hitStunTime: 0.3
   _knockBackStrength: 300
+  _noFollowUp: 0
   _x: 2
   _y: 0.5
   _z: 0.5
