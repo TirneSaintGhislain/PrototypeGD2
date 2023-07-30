@@ -47,7 +47,7 @@ public class HeavyAttack : BaseAttack
 
     protected override void ActiveEvent()
     {
-        _attackSystem.HitDetection(Radius, _hitStunTime, _knockBackStrength, true);
+        _attackSystem.HitDetection(Radius, _hitStunTime, _knockBackStrength, _attackDamage);
     }
 
     protected override void ActiveFinishedEvent()
