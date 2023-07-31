@@ -10,6 +10,9 @@ public class EvolutionSystem : MonoBehaviour
     [SerializeField] private int _amountOfAttacks = 3;
 
     private AttackSystem _attackSystem;
+    private LightAttack _lightAttack;
+    private DashAttack _dashAttack;
+    private HeavyAttack _heavyAttack;
 
     //ideally this is temporary until we can revamp the Attack System
     //This float is used to ensure we don't register the same Attack multiple times
@@ -26,7 +29,7 @@ public class EvolutionSystem : MonoBehaviour
     [SerializeField]
     private int _lightHitsMinimum;
     [SerializeField]
-    private float _heavyAreaMininum;
+    private float _heavyAreaMiminum;
     [SerializeField]
     private float _dashDamageMinimum;
 
@@ -54,16 +57,17 @@ public class EvolutionSystem : MonoBehaviour
     private float _comboCoolDown;
     private float _comboTimer;
 
+    private bool _evolutionDisabled;
+
 
     // Start is called before the first frame update
     void Start()
     {
         _attackSystem = GetComponent<AttackSystem>();
-        _attackSystem.LightHits = _lightHitsMinimum;
+        _lightAttack = GetComponent<LightAttack>();
+        _heavyAttack = GetComponent<HeavyAttack>();
+        _dashAttack = GetComponent<DashAttack>();
 
-        //Do this in attacksystem
-        GetComponent<HeavyAttack>().Radius = _heavyAreaMininum;
-        GetComponent<AttackSystem>().DashDamage = _dashDamageMinimum;
         //Initialise the Lists
         for (int i = 0; i < _amountOfAttacks; i++)
         {
@@ -78,9 +82,19 @@ public class EvolutionSystem : MonoBehaviour
         //Debug.Log(_timesUnused[1]);
     }
 
-    public void SuccesfulHit(int attackIndex, bool canEvolve)
+    public void DisableEvolution()
     {
-        if (canAttack && canEvolve)
+        _evolutionDisabled = true;
+    }
+
+    public void EnableEvolution()
+    {
+        _evolutionDisabled = false;
+    }
+
+    public void SuccesfulHit(int attackIndex)
+    {
+        if (canAttack &! _evolutionDisabled)
         {
             if (_usingMethod1)
             {
@@ -169,21 +183,23 @@ public class EvolutionSystem : MonoBehaviour
         switch (attackIndex)
         {
             case 0:
-                _attackSystem.LightHits += _lightHitsIncrease;
+                _lightAttack.LightHits += _lightHitsIncrease;
                 Debug.Log("Quick Attack Evolved: " + _attackSystem.LightHits);
                 break;
             case 1:
-                _attackSystem.HeavyArea += _heavyAreaIncrease;
+                _heavyAttack.Radius += _heavyAreaIncrease;
                 Debug.Log("Strong Attack Evolved: " + _attackSystem.HeavyArea);
                 break;
             case 2:
-                _attackSystem.DashDamage += _dashDamageIncrease;
+                _dashAttack.AttackDamage += (int)_dashDamageIncrease;
                 Debug.Log("Dash Attack Evolved: " + _attackSystem.DashDamage);
                 break;
         }
 
         GetComponent<AudioSystem>().PlayEvolvedSound();
     }
+
+
 
     private void CheckIfAttacksNeedToDeEvolve()
     {
@@ -206,18 +222,18 @@ public class EvolutionSystem : MonoBehaviour
         {
             //Only decrease the values if it stays above or at the minimum
             case 0:
-                if (_attackSystem.LightHits - _lightHitsIncrease > _lightHitsMinimum)
-                    _attackSystem.LightHits -= _lightHitsIncrease;
+                if (_lightAttack.LightHits - _lightHitsIncrease > _lightHitsMinimum)
+                    _lightAttack.LightHits -= _lightHitsIncrease;
                 Debug.Log("Quick Attack De-Evolved: " + _attackSystem.LightHits);
                 break;
             case 1:
-                if (_attackSystem.HeavyArea - _heavyAreaIncrease > _heavyAreaMininum)
-                    _attackSystem.HeavyArea -= _heavyAreaIncrease;
+                if (_heavyAttack.Radius - _heavyAreaIncrease > _heavyAreaMiminum)
+                    _heavyAttack.Radius -= _heavyAreaIncrease;
                 Debug.Log("Strong Attack De-Evolved: " + _attackSystem.HeavyArea);
                 break;
             case 2:
-                if (_attackSystem.DashDamage - _dashDamageIncrease > _dashDamageMinimum)
-                    _attackSystem.DashDamage -= _dashDamageIncrease;
+                if (_dashAttack.AttackDamage - _dashDamageIncrease > _dashDamageMinimum)
+                    _dashAttack.AttackDamage -= (int)_dashDamageIncrease;
                 Debug.Log("Dash Attack De-Evolved: " + _attackSystem.DashDamage);
                 break;
         }

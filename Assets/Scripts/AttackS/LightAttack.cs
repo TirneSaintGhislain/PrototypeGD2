@@ -18,15 +18,21 @@ public class LightAttack : BaseAttack
     [SerializeField]
     private float _z;
 
-    [HideInInspector]
-    public bool _canEvolve = true;
     int _currentHits = 0;
+
+    private EvolutionSystem _evolutionSystem;
+
+    public int LightHits { get; set; }
+
+    private void Start()
+    {
+        _evolutionSystem = GetComponent<EvolutionSystem>();
+    }
 
     public override void StartAttack(InputAction.CallbackContext context)
     {
         if (context.started & !_attackSystem.ActiveAttack)
         {
-            _canEvolve = true;
             _attackSystem._event1 += StartStartup;
             _attackSystem._event2 += StartActive;
             _attackSystem._event3 += RepeatAttacks;
@@ -49,13 +55,15 @@ public class LightAttack : BaseAttack
         _attackSystem._event4 -= StartCooldown;
         _currentHits = 0;
         _attackSystem.EnableMovement();
+        _evolutionSystem.EnableEvolution();
         //Debug.Log("Cleanup was called");
     }
 
     private void RepeatAttacks()
     {
+        _evolutionSystem.DisableEvolution();
         _currentHits++;
-        if(_currentHits < _attackSystem.LightHits)
+        if(_currentHits < LightHits)
         {
             //_startupFinished = false;
             Debug.Log("Repeat count: " + _currentHits);
@@ -69,7 +77,7 @@ public class LightAttack : BaseAttack
 
     protected override void ActiveEvent()
     {
-        _attackSystem.HitDetection(_x, _y, _z, _hitStunTime, _knockBackStrength, _canEvolve);
+        _attackSystem.HitDetection(_x, _y, _z, _hitStunTime, _knockBackStrength, _attackDamage);
         //Debug.Log("Active was called");
     }
 
