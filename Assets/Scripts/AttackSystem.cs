@@ -67,6 +67,8 @@ public class AttackSystem : MonoBehaviour
     private Material[] _materials;
     [SerializeField]
     private Mesh[] _meshes;
+    [SerializeField]
+    private List<GameObject> _attackVFXs;
 
     void Awake()
     {
@@ -115,6 +117,8 @@ public class AttackSystem : MonoBehaviour
             _pointerMeshRenderer.material = _materials[(int)_attackType];
             _pointerMeshFilter.mesh = _meshes[(int)_attackType];
             _pointer.localScale = _gizmos;
+            if (_attackType >= 0 && (int)_attackType < _attackVFXs.Count)
+                _attackVFXs[(int)_attackType].SetActive(true);
         }
         else if (InActiveFrames)
         {
@@ -127,10 +131,18 @@ public class AttackSystem : MonoBehaviour
             _pointerMeshRenderer.material = _materials[(int)_attackType];
             _pointerMeshFilter.mesh = _meshes[(int)_attackType];
             _pointer.localScale = _gizmos;
+            foreach (var vfx in _attackVFXs)
+            {
+                vfx.SetActive(false);
+            }
         }
         else
         {
             _pointerMeshRenderer.enabled = false;
+            foreach (var vfx in _attackVFXs)
+            {
+                vfx.SetActive(false);
+            }
         }
     }
 
