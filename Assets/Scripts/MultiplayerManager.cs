@@ -7,20 +7,28 @@ public class MultiplayerManager : MonoBehaviour
     [SerializeField]
     private List<Color> _colorOptions = new List<Color>();
 
-    [SerializeField]
-    private int _playerAmount;
-
-    private List<GameObject> _allPlayers = new List<GameObject>();
+    private static int _currentColorIndex = 0;
+    private Renderer[] _allPlayerRenderers;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Makes a list of all the players in the game
-        _allPlayers.AddRange(GameObject.FindGameObjectsWithTag("Player"));
-        int playerIndex = _allPlayers.Count - 1;
+        // Get all the Renderer components attached to this GameObject
+        _allPlayerRenderers = GetComponentsInChildren<Renderer>();
 
-        //Set the Player's default color
-        GetComponent<Renderer>().material.color = _colorOptions[playerIndex];
-        GetComponent<HitstunSystem>()._defaultColor = _colorOptions[playerIndex];
+        // Set the default color for all player renderers
+        int colorIndex = _currentColorIndex % _colorOptions.Count;
+        for (int i = 0; i < _allPlayerRenderers.Length; i++)
+        {
+            _allPlayerRenderers[i].material.color = _colorOptions[colorIndex];
+            HitstunSystem hitstunSystem = _allPlayerRenderers[i].GetComponent<HitstunSystem>();
+            if (hitstunSystem != null)
+            {
+                hitstunSystem._defaultColor = _colorOptions[colorIndex];
+            }
+        }
+
+        // Increment the current color index for the next instance of MultiplayerManager
+        _currentColorIndex++;
     }
 }

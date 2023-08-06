@@ -3,35 +3,60 @@ using UnityEngine.UI;
 
 public class HealthSystemUI : MonoBehaviour
 {
-    public Slider sharedHealthSlider;
+    public Slider healthBarSlider;
+    public int maxHealth = 20; // Updated to match the health range (-10 to 10)
 
-    public int maxHealth = 100;
-    private float currentHealthPercentage = 0.5f; // Starting health percentage (50%)
+    private HealthSystem player1HealthSystem;
+    private HealthSystem player2HealthSystem;
 
-    public float healthGainAmount = 0.1f; // Amount of health gained on each action
-    public float healthLossAmount = 0.2f; // Amount of health lost on each action
 
-    void Start()
+    public void FindPlayerHealthSystem()
     {
-        SetSharedHealthUI();
+        // Find the HealthSystem components attached to each player using NewPlayer object
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        // Assign the HealthSystem components to player1 and player2 based on availability
+        foreach (GameObject player in players)
+        {
+            if (player1HealthSystem == null)
+            {
+                player1HealthSystem = player.GetComponent<HealthSystem>();
+            }
+            else if (player2HealthSystem == null)
+            {
+                player2HealthSystem = player.GetComponent<HealthSystem>();
+            }
+        }
     }
 
-    // Method to handle player actions that gain health
-    public void GainHealth()
+    void Update()
     {
-        currentHealthPercentage = Mathf.Clamp(currentHealthPercentage + healthGainAmount, 0f, 1f);
-        SetSharedHealthUI();
-    }
+        if(player1HealthSystem != null&& player2HealthSystem != null)
+        {
+// Calculate the normalized value for the slider based on the players' health
+        float normalizedValue = CalculateNormalizedHealth();
 
-    // Method to handle player actions that lose health
-    public void LoseHealth()
-    {
-        currentHealthPercentage = Mathf.Clamp(currentHealthPercentage - healthLossAmount, 0f, 1f);
-        SetSharedHealthUI();
+        // Set the Slider's value to the normalized value
+        healthBarSlider.value = normalizedValue;
     }
+        }
+        
 
-    void SetSharedHealthUI()
+    private float CalculateNormalizedHealth()
     {
-        sharedHealthSlider.value = currentHealthPercentage * maxHealth;
+        
+        // Calculate the total health of both players
+        float totalHealth = player1HealthSystem.currentHealth + player2HealthSystem.currentHealth;
+
+        // Calculate the normalized value based on the total health and max health
+        // Divide by 20 (maxHealth * 2) to get a range from -1 to 1
+        float normalizedValue = totalHealth / (maxHealth * 2);
+
+        // The slider should move towards one direction based on the difference between the players' health
+        // If player 1 has more health, the slider will move towards the right (1).
+        // If player 2 has more health, the slider will move towards the left (-1).
+        // If both players have the same health, the slider will be in the middle (0).
+
+        return normalizedValue;
     }
 }

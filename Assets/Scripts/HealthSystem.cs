@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField]
-    private int _healthMax = 10;
+    public int healthMax = 10;
+    public int currentHealth;
     [SerializeField]
     private float _invincibilityTime = 0.3f;
 
@@ -15,10 +15,14 @@ public class HealthSystem : MonoBehaviour
 
     private bool _canGetHit = true;
     private int _currentHealth;
+    
+    private HealthSystemUI _healthSystemUI;
     // Start is called before the first frame update
     void Start()
     {
-        _currentHealth = _healthMax;
+        _currentHealth = healthMax;
+        _healthSystemUI = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthSystemUI>();
+        _healthSystemUI.FindPlayerHealthSystem();
     }
 
     // Update is called once per frame
@@ -29,7 +33,7 @@ public class HealthSystem : MonoBehaviour
             FindOpponent();
         }
     }
-
+    
     private void FindOpponent()
     {
         List<GameObject> allPlayers = new List<GameObject>();
@@ -74,7 +78,7 @@ public class HealthSystem : MonoBehaviour
             GetComponent<AudioSystem>().PlayHurtSound();
         }
     }
-
+   
     private void KnockBack(float knockBackStrength)
     {
         Vector3 direction = transform.position - _opponent.position;
