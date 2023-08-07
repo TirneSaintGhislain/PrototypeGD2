@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5409442489547181923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6142731118519429383}
+  - component: {fileID: 4919146846643697730}
+  m_Layer: 0
+  m_Name: AttackValueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6142731118519429383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409442489547181923}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.40527374, y: -2.0404952, z: 0.29119852}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4919146846643697730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409442489547181923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da43cdde45de79543b5da048ccaa9361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aboutAttacks: 'This is the order of the values
+
+    0: Damage
+
+    1: Range
+
+    2:
+    Speed'
+  _lightAttackDamage: 1
+  _lightAttackRange: 1
+  _lightAttackSpeed: 0
+  _lightAttackDamageIncrease: 0
+  _lightAttackRangeIncrease: 0
+  _lightAttackSpeedIncrease: 0
+  _heavyAttackDamage: 2
+  _heavyAttackRange: 2
+  _heavyAttackSpeed: 0
+  _heavyAttackDamageIncrease: 0
+  _heavyAttackRangeIncrease: 0
+  _heavyAttackSpeedIncrease: 0
+  _dashAttackDamage: 1
+  _dashAttackRange: 1
+  _dashAttackSpeed: 0
+  _dashAttackDamageIncrease: 0
+  _dashAttackRangeIncrease: 0
+  _dashAttackSpeedIncrease: 0
