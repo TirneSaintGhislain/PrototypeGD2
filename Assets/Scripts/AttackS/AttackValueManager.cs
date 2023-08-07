@@ -7,35 +7,37 @@ public class AttackValueManager : MonoBehaviour
     private List<List<float>> _attackValues = new List<List<float>>();
     private List<List<float>> _attackIncreases = new List<List<float>>();
     private List<List<float>> _minimumAttackValues = new List<List<float>>();
+    private AttackSystem _attackSystem;
+
     [TextArea]
     public string _aboutAttacks;
 
     [Header("Light Attack")]
-    public float _lightAttackDamage;
+    public int _lightAttackDamage;
     public float _lightAttackRange;
     public float _lightAttackSpeed;
     [Space(10)]
-    public float _lightAttackDamageIncrease;
+    public int _lightAttackDamageIncrease;
     public float _lightAttackRangeIncrease;
     public float _lightAttackSpeedIncrease;
 
     private List<float> _lightAttackValues = new List<float>();
 
     [Header("Heavy Attack")]
-    public float _heavyAttackDamage;
+    public int _heavyAttackDamage;
     public float _heavyAttackRange;
     public float _heavyAttackSpeed;
     [Space(10)]
-    public float _heavyAttackDamageIncrease;
+    public int _heavyAttackDamageIncrease;
     public float _heavyAttackRangeIncrease;
     public float _heavyAttackSpeedIncrease;
 
     [Header("Dash Attack")]
-    public float _dashAttackDamage;
+    public int _dashAttackDamage;
     public float _dashAttackRange;
     public float _dashAttackSpeed;
     [Space(10)]
-    public float _dashAttackDamageIncrease;
+    public int _dashAttackDamageIncrease;
     public float _dashAttackRangeIncrease;
     public float _dashAttackSpeedIncrease;
     // Start is called before the first frame update
@@ -45,6 +47,8 @@ public class AttackValueManager : MonoBehaviour
         InitialiseAttackIncreasesList();
         InitialiseAttackValues(_attackValues);
         InitialiseAttackValues(_minimumAttackValues);
+
+        _attackSystem = GetComponent<AttackSystem>();
     }
 
     // Update is called once per frame
@@ -77,23 +81,45 @@ public class AttackValueManager : MonoBehaviour
 
         //Put the updated attack value into the list
         _attackValues[attackIndex][parameterIndex] = updatedAttackParameter;
+
+        //Specifically for the Speed Parameter
+        if (parameterIndex == 2)
+        {
+            if (evolves)
+            {
+                switch (attackIndex)
+                {
+                    case 0:
+                        GetComponent<LightAttack>().ChangeAttackSpeed(_attackIncreases[0][2]);
+                        break;
+                    case 1:
+                        GetComponent<HeavyAttack>().ChangeAttackSpeed(_attackIncreases[1][2]);
+                        break;
+                    case 2:
+                        GetComponent<DashAttack>().ChangeAttackSpeed(_attackIncreases[2][2]);
+                        break;
+                }
+            }
+        }
+
+        _attackSystem.UpdateAttackValues();
     }
 
     private void UpdateAttackValues()
     {
         //Update the public values of the attacks
         //Light Attack
-        _lightAttackDamage = _attackValues[0][0];
+        _lightAttackDamage = (int)_attackValues[0][0];
         _lightAttackRange = _attackValues[0][1];
         _lightAttackSpeed = _attackValues[0][2];
 
         //Heavy Attack
-        _heavyAttackDamage = _attackValues[1][0];
+        _heavyAttackDamage = (int)_attackValues[1][0];
         _heavyAttackRange = _attackValues[1][1];
         _heavyAttackSpeed = _attackValues[1][2];
 
         //DashAttack
-        _dashAttackDamage = _attackValues[2][0];
+        _dashAttackDamage = (int)_attackValues[2][0];
         _dashAttackRange = _attackValues[2][1];
         _dashAttackSpeed = _attackValues[2][2];
     }

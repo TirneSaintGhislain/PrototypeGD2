@@ -21,6 +21,7 @@ public class LightAttack : BaseAttack
     int _currentHits = 0;
 
     private EvolutionSystem _evolutionSystem;
+    private AttackValueManager _attackValueManager;
 
     public int LightHits { get; set; }
 
@@ -79,6 +80,7 @@ public class LightAttack : BaseAttack
     protected override void ActiveEvent()
     {
         _attackSystem.HitDetection(_x, _y, _z, _hitStunTime, _knockBackStrength, _attackDamage);
+        GetComponent<AudioSystem>().PlayLightAttack();
         //Debug.Log("Active was called");
     }
 

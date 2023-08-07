@@ -14,6 +14,8 @@ public class AudioSystem : MonoBehaviour
     private AudioClip _hurtSound;
     [SerializeField]
     private AudioClip _evolvedSound;
+    [SerializeField]
+    private AudioClip _devolvedSound;
 
     //The time before a clip can be freely interrupted
     [SerializeField]
@@ -43,6 +45,11 @@ public class AudioSystem : MonoBehaviour
     public void PlayEvolvedSound()
     {
         PlayAudio(_evolvedSound);
+    }
+
+    public void PlayDevolvedSound()
+    {
+        PlayAudio(_devolvedSound);
     }
 
     private void Update()

@@ -47,6 +47,7 @@ public class HeavyAttack : BaseAttack
     protected override void ActiveEvent()
     {
         _attackSystem.HitDetection(Radius, _hitStunTime, _knockBackStrength, _attackDamage);
+        GetComponent<AudioSystem>().PlayHeavyAttack();
     }
 
     protected override void ActiveFinishedEvent()

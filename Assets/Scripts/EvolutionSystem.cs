@@ -75,14 +75,25 @@ public class EvolutionSystem : MonoBehaviour
             _timesUnused.Add(0);
             _attackRatings.Add(0);
         }
-
-        _attackValueManager = GameObject.FindObjectOfType<AttackValueManager>().GetComponent<AttackValueManager>();
     }
 
     private void Update()
     {
         CountDownComboCoolDown();
         //Debug.Log(_timesUnused[1]);
+
+        if (Input.GetKeyDown("Y"))
+        {
+            EvolveAttack(0);
+        }
+        if (Input.GetKeyDown("U"))
+        {
+            EvolveAttack(1);
+        }
+        if (Input.GetKeyDown("I"))
+        {
+            EvolveAttack(2);
+        }
     }
 
     public void DisableEvolution()
@@ -182,9 +193,29 @@ public class EvolutionSystem : MonoBehaviour
 
     private void EvolveAttack(int attackIndex)
     {
+        ////Evolve the correct attack
+        //switch (attackIndex)
+        //{
+        //    case 0:
+        //        _lightAttack.LightHits += _lightHitsIncrease;
+        //        Debug.Log("Quick Attack Evolved: " + _attackSystem.LightHits);
+        //        break;
+        //    case 1:
+        //        _heavyAttack.Radius += _heavyAreaIncrease;
+        //        Debug.Log("Strong Attack Evolved: " + _attackSystem.HeavyArea);
+        //        break;
+        //    case 2:
+        //        _dashAttack.AttackDamage += (int)_dashDamageIncrease;
+        //        Debug.Log("Dash Attack Evolved: " + _attackSystem.DashDamage);
+        //        break;
+        //}
+        ////System 2
         _attackValueManager.EvolveAttack(attackIndex, 0, true);
+
         GetComponent<AudioSystem>().PlayEvolvedSound();
     }
+
+
 
     private void CheckIfAttacksNeedToDeEvolve()
     {
@@ -202,26 +233,26 @@ public class EvolutionSystem : MonoBehaviour
 
     private void DeEvolveAttack(int attackIndex)
     {
-        //Not the best way of doing this but it should work
-        switch (attackIndex)
-        {
-            //Only decrease the values if it stays above or at the minimum
-            case 0:
-                if (_lightAttack.LightHits - _lightHitsIncrease > _lightHitsMinimum)
-                    _lightAttack.LightHits -= _lightHitsIncrease;
-                Debug.Log("Quick Attack De-Evolved: " + _attackSystem.LightHits);
-                break;
-            case 1:
-                if (_heavyAttack.Radius - _heavyAreaIncrease > _heavyAreaMiminum)
-                    _heavyAttack.Radius -= _heavyAreaIncrease;
-                Debug.Log("Strong Attack De-Evolved: " + _attackSystem.HeavyArea);
-                break;
-            case 2:
-                if (_dashAttack.AttackDamage - _dashDamageIncrease > _dashDamageMinimum)
-                    _dashAttack.AttackDamage -= (int)_dashDamageIncrease;
-                Debug.Log("Dash Attack De-Evolved: " + _attackSystem.DashDamage);
-                break;
-        }
+        ////Not the best way of doing this but it should work
+        //switch (attackIndex)
+        //{
+        //    //Only decrease the values if it stays above or at the minimum
+        //    case 0:
+        //        if (_lightAttack.LightHits - _lightHitsIncrease > _lightHitsMinimum)
+        //            _lightAttack.LightHits -= _lightHitsIncrease;
+        //        Debug.Log("Quick Attack De-Evolved: " + _attackSystem.LightHits);
+        //        break;
+        //    case 1:
+        //        if (_heavyAttack.Radius - _heavyAreaIncrease > _heavyAreaMiminum)
+        //            _heavyAttack.Radius -= _heavyAreaIncrease;
+        //        Debug.Log("Strong Attack De-Evolved: " + _attackSystem.HeavyArea);
+        //        break;
+        //    case 2:
+        //        if (_dashAttack.AttackDamage - _dashDamageIncrease > _dashDamageMinimum)
+        //            _dashAttack.AttackDamage -= (int)_dashDamageIncrease;
+        //        Debug.Log("Dash Attack De-Evolved: " + _attackSystem.DashDamage);
+        //        break;
+        //}
     }
 
     private IEnumerator CountDownAttackCoolDown()

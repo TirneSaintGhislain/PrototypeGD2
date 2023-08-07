@@ -691,6 +691,7 @@ MonoBehaviour:
   _dashAttack: {fileID: 8300000, guid: aba610ad18980de46a1bb68ac4d447ac, type: 3}
   _hurtSound: {fileID: 8300000, guid: a5d98179c174b2c48b4ed26e1b6a0a88, type: 3}
   _evolvedSound: {fileID: 8300000, guid: f5ca4a3c7b8c6484b96076882e201b48, type: 3}
+  _devolvedSound: {fileID: 8300000, guid: 60a24801bbdc40a448d4f886b7dd243b, type: 3}
   _interruptionTime: 0.6
 --- !u!82 &20067644494824937
 AudioSource:

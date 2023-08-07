@@ -21,6 +21,7 @@ public class AttackSystem : MonoBehaviour
 
     private EvolutionSystem _evolutionSystem;
     private MovementSystem _movementSystem;
+    private AttackValueManager _attackValueManager;
 
     //So preferably the system fires each event in succession once the previous one has ended
     //Is there a way to assign this in proper order?
@@ -78,18 +79,17 @@ public class AttackSystem : MonoBehaviour
         InStartupFrames = false;
         InActiveFrames = false;
 
+        _attackValueManager = GameObject.FindObjectOfType<AttackValueManager>().GetComponent<AttackValueManager>();
     }
     private void Update()
     {
         DrawHitbox();
         ChangeMovement();
-
-        UpdateAttackValues();
     }
 
-    private void UpdateAttackValues()
+    public void UpdateAttackValues()
     {
-
+        GetComponent<LightAttack>().AttackDamage = _attackValueManager._lightAttackDamage;
     }
 
     void ChangeMovement()
