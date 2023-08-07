@@ -19,16 +19,60 @@ public abstract class BaseAttack : MonoBehaviour
     private int _cooldownFrames;
     [SerializeField]
     protected AttackTypes _thisAttackType;
-    
+
     public int AttackDamage { get => _attackDamage; set => _attackDamage = value; }
 
     protected int _attackDamage;
+
+    public void ChangeAttackSpeed(float multiplier)
+    {
+        int newStartupFrames = (int)Math.Floor(_startupFrames * multiplier);
+        int newActiveFrames = (int)Math.Floor(_activeFrames * multiplier);
+        int newCooldownFrames = (int)Math.Floor(_cooldownFrames * multiplier);
+
+        if(newStartupFrames <= 0)
+        {
+            newStartupFrames = 1;
+        }
+        if(newActiveFrames <= 0)
+        {
+            newActiveFrames = 1;
+        }
+        if(newCooldownFrames <= 0)
+        {
+            newCooldownFrames = 1;
+        }
+
+        _startupFrames = newStartupFrames;
+        _activeFrames = newActiveFrames;
+        _cooldownFrames = newCooldownFrames;
+    }
+
+    public void ChangeAttackSpeed(int startupFrames, int activeFrames, int cooldownFrames)
+    {
+        if (startupFrames <= 0)
+        {
+            startupFrames = 1;
+        }
+        if (activeFrames <= 0)
+        {
+            activeFrames = 1;
+        }
+        if (cooldownFrames <= 0)
+        {
+            cooldownFrames = 1;
+        }
+
+        _startupFrames = startupFrames;
+        _activeFrames = activeFrames;
+        _cooldownFrames = cooldownFrames;
+    }
 
     //protected bool _startupFinished = false;
     //protected bool _activeFinished = false;
     //protected bool _cooldownFinished = false;
 
-    private void Awake()
+    protected virtual void Start()
     {
         _attackSystem = GetComponent<AttackSystem>();
     }

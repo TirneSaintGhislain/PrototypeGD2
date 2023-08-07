@@ -24,8 +24,9 @@ public class LightAttack : BaseAttack
 
     public int LightHits { get; set; }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _evolutionSystem = GetComponent<EvolutionSystem>();
     }
 

@@ -14,8 +14,9 @@ public class HeavyAttack : BaseAttack
 
     public float Radius { get; set; }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         Radius = _baseRadius;
     }
     public override void StartAttack(InputAction.CallbackContext context)
