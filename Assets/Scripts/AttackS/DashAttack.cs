@@ -41,8 +41,9 @@ public class DashAttack : BaseAttack
         }
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _movementSystem = GetComponent<MovementSystem>();
     }
 
