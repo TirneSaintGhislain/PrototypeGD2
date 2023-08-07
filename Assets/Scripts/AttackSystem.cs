@@ -83,6 +83,13 @@ public class AttackSystem : MonoBehaviour
     {
         DrawHitbox();
         ChangeMovement();
+
+        UpdateAttackValues();
+    }
+
+    private void UpdateAttackValues()
+    {
+
     }
 
     void ChangeMovement()

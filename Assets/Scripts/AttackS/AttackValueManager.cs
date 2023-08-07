@@ -6,6 +6,7 @@ public class AttackValueManager : MonoBehaviour
 {
     private List<List<float>> _attackValues = new List<List<float>>();
     private List<List<float>> _attackIncreases = new List<List<float>>();
+    private List<List<float>> _minimumAttackValues = new List<List<float>>();
     [TextArea]
     public string _aboutAttacks;
 
@@ -42,12 +43,14 @@ public class AttackValueManager : MonoBehaviour
     {
         //Fill the attack Values List
         InitialiseAttackIncreasesList();
-        InitialiseAttackValues();
+        InitialiseAttackValues(_attackValues);
+        InitialiseAttackValues(_minimumAttackValues);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Update the public variables
         UpdateAttackValues();
     }
 
@@ -59,6 +62,21 @@ public class AttackValueManager : MonoBehaviour
 
         List<float> currentAttackIncreases = _attackIncreases[attackIndex];
         float currentAttackIncreaseValue = currentAttackIncreases[parameterIndex];
+
+        float updatedAttackParameter = currentAttackParameter;
+
+        if (evolves)
+        {
+            updatedAttackParameter += currentAttackIncreaseValue;
+        }
+        //Check if the updated value is valid 
+        else if ((currentAttackParameter - currentAttackIncreaseValue) > _minimumAttackValues[attackIndex][parameterIndex])
+        {
+            updatedAttackParameter -= currentAttackIncreaseValue;
+        }
+
+        //Put the updated attack value into the list
+        _attackValues[attackIndex][parameterIndex] = updatedAttackParameter;
     }
 
     private void UpdateAttackValues()
@@ -80,7 +98,7 @@ public class AttackValueManager : MonoBehaviour
         _dashAttackSpeed = _attackValues[2][2];
     }
 
-    private void InitialiseAttackValues()
+    private void InitialiseAttackValues(List<List<float>> currentList)
     {
         //This is going to be long and hardcoded
         //We update the list that holds the Values for each parameter of each attack
@@ -99,9 +117,9 @@ public class AttackValueManager : MonoBehaviour
         dashAttackValues[1] = _dashAttackRange;
         dashAttackValues[2] = _dashAttackSpeed;
 
-        _attackIncreases[0] = lightAttackValues;
-        _attackIncreases[1] = heavyAttackValues;
-        _attackIncreases[2] = dashAttackValues;
+        currentList.Add(lightAttackValues);
+        currentList.Add(heavyAttackValues);
+        currentList.Add(dashAttackValues);
     }
 
     private void InitialiseAttackIncreasesList()
@@ -122,8 +140,8 @@ public class AttackValueManager : MonoBehaviour
         dashAttackIncreases[1] = _dashAttackRangeIncrease;
         dashAttackIncreases[2] = _dashAttackSpeedIncrease;
 
-        _attackIncreases[0] = lightAttackIncreases;
-        _attackIncreases[1] = heavyAttackIncreases;
-        _attackIncreases[2] = dashAttackIncreases;
+        _attackIncreases.Add(lightAttackIncreases);
+        _attackIncreases.Add(heavyAttackIncreases);
+        _attackIncreases.Add(dashAttackIncreases);
     }
 }

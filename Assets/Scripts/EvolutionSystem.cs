@@ -59,6 +59,7 @@ public class EvolutionSystem : MonoBehaviour
 
     private bool _evolutionDisabled;
 
+    private AttackValueManager _attackValueManager;
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +75,8 @@ public class EvolutionSystem : MonoBehaviour
             _timesUnused.Add(0);
             _attackRatings.Add(0);
         }
+
+        _attackValueManager = GameObject.FindObjectOfType<AttackValueManager>().GetComponent<AttackValueManager>();
     }
 
     private void Update()
@@ -179,27 +182,9 @@ public class EvolutionSystem : MonoBehaviour
 
     private void EvolveAttack(int attackIndex)
     {
-        //Evolve the correct attack
-        switch (attackIndex)
-        {
-            case 0:
-                _lightAttack.LightHits += _lightHitsIncrease;
-                Debug.Log("Quick Attack Evolved: " + _attackSystem.LightHits);
-                break;
-            case 1:
-                _heavyAttack.Radius += _heavyAreaIncrease;
-                Debug.Log("Strong Attack Evolved: " + _attackSystem.HeavyArea);
-                break;
-            case 2:
-                _dashAttack.AttackDamage += (int)_dashDamageIncrease;
-                Debug.Log("Dash Attack Evolved: " + _attackSystem.DashDamage);
-                break;
-        }
-
+        _attackValueManager.EvolveAttack(attackIndex, 0, true);
         GetComponent<AudioSystem>().PlayEvolvedSound();
     }
-
-
 
     private void CheckIfAttacksNeedToDeEvolve()
     {
