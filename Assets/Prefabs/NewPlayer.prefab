@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 4160087034473877103}
   - component: {fileID: 5131859001704186225}
   - component: {fileID: 20067644494824937}
+  - component: {fileID: 4427804576177202386}
   m_Layer: 0
   m_Name: NewPlayer
   m_TagString: Player
@@ -585,7 +586,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4160087034577734689}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5760e63584117364bac4517276a29219, type: 3}
   m_Name: 
@@ -594,6 +595,7 @@ MonoBehaviour:
   - {r: 0.19999997, g: 0.8784314, b: 0.4457322, a: 1}
   - {r: 0.5147525, g: 0.19999997, b: 0.8784314, a: 1}
   - {r: 1, g: 0.6468227, b: 0, a: 1}
+  _currentColorIndex: 0
 --- !u!54 &7106946776552641792
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -626,11 +628,11 @@ MonoBehaviour:
   _activeFrames: 5
   _cooldownFrames: 10
   _thisAttackType: 0
+  _attackDamage: 0
   _hitStunTime: 0.1
   _knockBackStrength: 500
-  _x: 2
-  _y: 0.5
-  _z: 0.5
+  _baseRange: {x: 0, y: 0, z: 0}
+  _currentRange: {x: 0, y: 0, z: 0}
 --- !u!114 &4160087034473877102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,6 +649,7 @@ MonoBehaviour:
   _activeFrames: 30
   _cooldownFrames: 20
   _thisAttackType: 1
+  _attackDamage: 0
   _hitStunTime: 0.5
   _knockBackStrength: 1000
   _baseRadius: 1.5
@@ -666,14 +669,14 @@ MonoBehaviour:
   _activeFrames: 10
   _cooldownFrames: 20
   _thisAttackType: 2
+  _attackDamage: 0
   _dashFrameDuration: 8
   _dashBaseDistance: 6
   _hitStunTime: 0.3
   _knockBackStrength: 300
   _noFollowUp: 0
-  _x: 2
-  _y: 0.5
-  _z: 0.5
+  _baseRange: {x: 0, y: 0, z: 0}
+  _currentRange: {x: 0, y: 0, z: 0}
 --- !u!114 &5131859001704186225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +792,44 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4427804576177202386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160087034577734689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da43cdde45de79543b5da048ccaa9361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aboutAttacks: 'This is the order of the values
+
+    0: Damage
+
+    1: Range
+
+    2:
+    Speed'
+  _lightAttackDamage: 1
+  _lightAttackRange: 2
+  _lightAttackSpeed: 1
+  _lightAttackDamageIncrease: 1
+  _lightAttackRangeIncrease: 0
+  _lightAttackSpeedIncrease: 0.8
+  _heavyAttackDamage: 2
+  _heavyAttackRange: 2
+  _heavyAttackSpeed: 1
+  _heavyAttackDamageIncrease: 2
+  _heavyAttackRangeIncrease: 1
+  _heavyAttackSpeedIncrease: 0.8
+  _dashAttackDamage: 1
+  _dashAttackRange: 1
+  _dashAttackSpeed: 0.8
+  _dashAttackDamageIncrease: 1
+  _dashAttackRangeIncrease: 1
+  _dashAttackSpeedIncrease: 0.7
 --- !u!1 &7558665328304905546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,6 +1107,7 @@ MonoBehaviour:
   - {r: 0.19999997, g: 0.8784314, b: 0.4457322, a: 1}
   - {r: 0.5147525, g: 0.19999997, b: 0.8784314, a: 1}
   - {r: 1, g: 0.6468227, b: 0, a: 1}
+  _currentColorIndex: 0
 --- !u!1001 &9076734108967815725
 PrefabInstance:
   m_ObjectHideFlags: 0

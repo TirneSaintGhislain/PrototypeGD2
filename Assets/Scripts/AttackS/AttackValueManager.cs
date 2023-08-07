@@ -54,8 +54,7 @@ public class AttackValueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Update the public variables
-        UpdateAttackValues();
+
     }
 
     public void EvolveAttack(int attackIndex, int parameterIndex, bool evolves)

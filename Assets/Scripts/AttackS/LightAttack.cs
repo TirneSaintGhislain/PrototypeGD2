@@ -12,16 +12,13 @@ public class LightAttack : BaseAttack
 
     [Header("Light Attack Hitbox")]
     [SerializeField]
-    private float _x;
-    [SerializeField]
-    private float _y;
-    [SerializeField]
-    private float _z;
+    public Vector3 _baseRange;
+    [HideInInspector]
+    public Vector3 _currentRange;
 
     int _currentHits = 0;
 
     private EvolutionSystem _evolutionSystem;
-    private AttackValueManager _attackValueManager;
 
     public int LightHits { get; set; }
 
@@ -42,7 +39,7 @@ public class LightAttack : BaseAttack
             _attackSystem.ActiveAttack = true;
             _attackSystem.CurrentAttackType = _thisAttackType;
             _attackSystem.InStartupFrames = true;
-            _attackSystem.Gizmos = new Vector3(_x, _y, _z);
+            _attackSystem.Gizmos = _baseRange;
             _attackSystem._event1.Invoke();
             
         }
@@ -79,7 +76,7 @@ public class LightAttack : BaseAttack
 
     protected override void ActiveEvent()
     {
-        _attackSystem.HitDetection(_x, _y, _z, _hitStunTime, _knockBackStrength, _attackDamage);
+        _attackSystem.HitDetection(_baseRange, _hitStunTime, _knockBackStrength, _attackDamage);
         GetComponent<AudioSystem>().PlayLightAttack();
         //Debug.Log("Active was called");
     }

@@ -7,7 +7,8 @@ public class MultiplayerManager : MonoBehaviour
     [SerializeField]
     private List<Color> _colorOptions = new List<Color>();
 
-    private static int _currentColorIndex = 0;
+    [HideInInspector]
+    public int _currentColorIndex = 0;
     private Renderer[] _allPlayerRenderers;
 
     // Start is called before the first frame update

@@ -75,6 +75,8 @@ public class EvolutionSystem : MonoBehaviour
             _timesUnused.Add(0);
             _attackRatings.Add(0);
         }
+
+        _attackValueManager = GetComponent<AttackValueManager>();
     }
 
     private void Update()
@@ -253,6 +255,10 @@ public class EvolutionSystem : MonoBehaviour
         //        Debug.Log("Dash Attack De-Evolved: " + _attackSystem.DashDamage);
         //        break;
         //}
+
+        _attackValueManager.EvolveAttack(attackIndex, 0, false);
+
+        GetComponent<AudioSystem>().PlayDevolvedSound();
     }
 
     private IEnumerator CountDownAttackCoolDown()

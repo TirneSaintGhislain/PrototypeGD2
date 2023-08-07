@@ -79,7 +79,7 @@ public class AttackSystem : MonoBehaviour
         InStartupFrames = false;
         InActiveFrames = false;
 
-        _attackValueManager = GameObject.FindObjectOfType<AttackValueManager>().GetComponent<AttackValueManager>();
+        _attackValueManager = GetComponent<AttackValueManager>();
     }
     private void Update()
     {
@@ -89,7 +89,13 @@ public class AttackSystem : MonoBehaviour
 
     public void UpdateAttackValues()
     {
-        GetComponent<LightAttack>().AttackDamage = _attackValueManager._lightAttackDamage;
+        GetComponent<LightAttack>()._attackDamage = _attackValueManager._lightAttackDamage;
+        GetComponent<HeavyAttack>()._attackDamage = _attackValueManager._heavyAttackDamage;
+        GetComponent<DashAttack>()._attackDamage = _attackValueManager._dashAttackDamage;
+
+        GetComponent<LightAttack>()._currentRange = GetComponent<LightAttack>()._baseRange * _attackValueManager._lightAttackRange;
+        GetComponent<HeavyAttack>().Radius = _attackValueManager._heavyAttackRange;
+        GetComponent<DashAttack>()._currentRange = GetComponent<DashAttack>()._baseRange * _attackValueManager._dashAttackRange;
     }
 
     void ChangeMovement()
@@ -153,10 +159,10 @@ public class AttackSystem : MonoBehaviour
         }
     }
 
-    public void HitDetection(float x, float y, float z, float stunTime, float knockBackStrength, int attackDamage)
+    public void HitDetection(Vector3 size, float stunTime, float knockBackStrength, int attackDamage)
     {
-        _gizmos = new Vector3(x, y, z);
-        Vector3 hitbox = new Vector3(x, y, z);
+        _gizmos = size;
+        Vector3 hitbox = size;
         _pointer.localPosition = new Vector3(hitbox.x / 2, 0, 0);
         Collider[] colliders = Physics.OverlapBox(_pointer.position, hitbox / 2, transform.rotation);
 

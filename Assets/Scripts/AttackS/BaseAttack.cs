@@ -22,7 +22,8 @@ public abstract class BaseAttack : MonoBehaviour
 
     public int AttackDamage { get => _attackDamage; set => _attackDamage = value; }
 
-    protected int _attackDamage;
+    [HideInInspector]
+    public int _attackDamage;
 
     public void ChangeAttackSpeed(float multiplier)
     {

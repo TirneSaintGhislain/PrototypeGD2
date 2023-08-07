@@ -15,7 +15,8 @@ public class HealthSystem : MonoBehaviour
 
     private bool _canGetHit = true;
     private int _currentHealth;
-    
+    private int _playerIndex;
+
     private HealthSystemUI _healthSystemUI;
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class HealthSystem : MonoBehaviour
         _currentHealth = healthMax;
         _healthSystemUI = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthSystemUI>();
         _healthSystemUI.FindPlayerHealthSystem();
+        _playerIndex = GetComponent<MultiplayerManager>()._currentColorIndex;
     }
 
     // Update is called once per frame
@@ -60,10 +62,10 @@ public class HealthSystem : MonoBehaviour
         {
             _currentHealth -= damage;
 
-            if (_currentHealth < 1)
-            {
-                StartCoroutine(Die());
-            }
+            //if (_currentHealth < 1)
+            //{
+            //    StartCoroutine(Die());
+            //}
 
             KnockBack(knockBackStrength);
 
@@ -76,6 +78,7 @@ public class HealthSystem : MonoBehaviour
             StartCoroutine(GetComponent<HitstunSystem>().StartHitStunTime(stunTime));
 
             GetComponent<AudioSystem>().PlayHurtSound();
+            UpdateScore(damage);
         }
     }
    
@@ -99,5 +102,10 @@ public class HealthSystem : MonoBehaviour
         _canGetHit = false;
         yield return new WaitForSeconds(_invincibilityTime);
         _canGetHit = true;
+    }
+
+    private void UpdateScore(int damage)
+    {
+        //ExampleFunction(damage, _playerIndex)
     }
 }
