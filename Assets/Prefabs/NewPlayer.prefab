@@ -535,7 +535,7 @@ MonoBehaviour:
   _amountOfAttacks: 3
   _attackCoolDown: 0.2
   _lightHitsIncrease: 1
-  _heavyAreaIncrease: 2
+  _heavyAreaIncrease: 1
   _dashDamageIncrease: 1
   _lightHitsMinimum: 1
   _heavyAreaMiminum: 0
