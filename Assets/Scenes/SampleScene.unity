@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarSlider: {fileID: 1943687995}
-  maxHealth: 20
+  maxHealth: 10
 --- !u!1 &663793733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,9 +1446,9 @@ MonoBehaviour:
   m_FillRect: {fileID: 185820210}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: -10
-  m_MaxValue: 10
-  m_WholeNumbers: 1
+  m_MinValue: -1
+  m_MaxValue: 1
+  m_WholeNumbers: 0
   m_Value: -0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1511,7 +1511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &765866772764763174
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1673,8 +1673,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthMax: 10
-  currentHealth: 0
   _invincibilityTime: 0.3
+  _currentHealth: 0
+  hurtVFX: {fileID: 0}
 --- !u!114 &5388997221962718775
 MonoBehaviour:
   m_ObjectHideFlags: 0

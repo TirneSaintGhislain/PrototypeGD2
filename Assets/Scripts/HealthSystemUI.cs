@@ -22,7 +22,7 @@ public class HealthSystemUI : MonoBehaviour
             {
                 player1HealthSystem = player.GetComponent<HealthSystem>();
             }
-            else if (player2HealthSystem == null)
+            else if (player2HealthSystem == null && player1HealthSystem !=player.GetComponent<HealthSystem>())
             {
                 player2HealthSystem = player.GetComponent<HealthSystem>();
             }
@@ -38,19 +38,19 @@ public class HealthSystemUI : MonoBehaviour
 
         // Set the Slider's value to the normalized value
         healthBarSlider.value = normalizedValue;
-    }
         }
+    }
         
 
     private float CalculateNormalizedHealth()
     {
         
         // Calculate the total health of both players
-        float totalHealth = player1HealthSystem.currentHealth + player2HealthSystem.currentHealth;
+        float totalHealth = player1HealthSystem._currentHealth - player2HealthSystem._currentHealth;
 
         // Calculate the normalized value based on the total health and max health
         // Divide by 20 (maxHealth * 2) to get a range from -1 to 1
-        float normalizedValue = totalHealth / (maxHealth * 2);
+        float normalizedValue = totalHealth; /// (maxHealth*2);
 
         // The slider should move towards one direction based on the difference between the players' health
         // If player 1 has more health, the slider will move towards the right (1).

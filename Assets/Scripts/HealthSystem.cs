@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class HealthSystem : MonoBehaviour
 {
     public int healthMax = 10;
-    public int currentHealth;
+   // public int currentHealth;
     [SerializeField]
     private float _invincibilityTime = 0.3f;
 
@@ -14,9 +14,9 @@ public class HealthSystem : MonoBehaviour
     private bool _foundOpponent;
 
     private bool _canGetHit = true;
-    private int _currentHealth;
+    public int _currentHealth;
     private int _playerIndex;
-
+    public GameObject hurtVFX;
     private HealthSystemUI _healthSystemUI;
     // Start is called before the first frame update
     void Start()
@@ -78,7 +78,8 @@ public class HealthSystem : MonoBehaviour
             StartCoroutine(GetComponent<HitstunSystem>().StartHitStunTime(stunTime));
 
             GetComponent<AudioSystem>().PlayHurtSound();
-            UpdateScore(damage);
+            hurtVFX.SetActive(true);
+            //UpdateScore(damage);
         }
     }
    
@@ -103,9 +104,9 @@ public class HealthSystem : MonoBehaviour
         yield return new WaitForSeconds(_invincibilityTime);
         _canGetHit = true;
     }
-
-    private void UpdateScore(int damage)
-    {
-        //ExampleFunction(damage, _playerIndex)
-    }
+   
+    //private void UpdateScore(int damage)
+    //{
+    //    //ExampleFunction(damage, _playerIndex)
+    //}
 }
