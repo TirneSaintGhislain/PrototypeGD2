@@ -84,15 +84,15 @@ public class EvolutionSystem : MonoBehaviour
         CountDownComboCoolDown();
         //Debug.Log(_timesUnused[1]);
 
-        if (Input.GetKeyDown("Y"))
+        if (Input.GetKeyDown("y"))
         {
             EvolveAttack(0);
         }
-        if (Input.GetKeyDown("U"))
+        if (Input.GetKeyDown("u"))
         {
             EvolveAttack(1);
         }
-        if (Input.GetKeyDown("I"))
+        if (Input.GetKeyDown("i"))
         {
             EvolveAttack(2);
         }

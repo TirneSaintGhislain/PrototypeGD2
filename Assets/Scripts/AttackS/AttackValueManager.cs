@@ -128,19 +128,19 @@ public class AttackValueManager : MonoBehaviour
         //This is going to be long and hardcoded
         //We update the list that holds the Values for each parameter of each attack
         List<float> lightAttackValues = new List<float>();
-        lightAttackValues[0] = _lightAttackDamage;
-        lightAttackValues[1] = _lightAttackRange;
-        lightAttackValues[2] = _lightAttackSpeed;
+        lightAttackValues.Add(_lightAttackDamage);
+        lightAttackValues.Add(_lightAttackRange);
+        lightAttackValues.Add(_lightAttackSpeed);
 
         List<float> heavyAttackValues = new List<float>();
-        heavyAttackValues[0] = _heavyAttackDamage;
-        heavyAttackValues[1] = _heavyAttackRange;
-        heavyAttackValues[2] = _heavyAttackSpeed;
+        heavyAttackValues.Add(_heavyAttackDamage);
+        heavyAttackValues.Add(_heavyAttackRange);
+        heavyAttackValues.Add(_heavyAttackSpeed);
 
         List<float> dashAttackValues = new List<float>();
-        dashAttackValues[0] = _dashAttackDamage;
-        dashAttackValues[1] = _dashAttackRange;
-        dashAttackValues[2] = _dashAttackSpeed;
+        dashAttackValues.Add( _dashAttackDamage);
+        dashAttackValues.Add(_dashAttackRange);
+        dashAttackValues.Add(_dashAttackSpeed);
 
         currentList.Add(lightAttackValues);
         currentList.Add(heavyAttackValues);
@@ -151,19 +151,19 @@ public class AttackValueManager : MonoBehaviour
     {
         //We fill the list that holds the Increase Values for each parameter of each attack
         List<float> lightAttackIncreases = new List<float>();
-        lightAttackIncreases[0] = _lightAttackDamageIncrease;
-        lightAttackIncreases[1] = _lightAttackRangeIncrease;
-        lightAttackIncreases[2] = _lightAttackSpeedIncrease;
+        lightAttackIncreases.Add(_lightAttackDamageIncrease);
+        lightAttackIncreases.Add(_lightAttackRangeIncrease);
+        lightAttackIncreases.Add(_lightAttackSpeedIncrease);
 
         List<float> heavyAttackIncreases = new List<float>();
-        heavyAttackIncreases[0] = _heavyAttackDamageIncrease;
-        heavyAttackIncreases[1] = _heavyAttackRangeIncrease;
-        heavyAttackIncreases[2] = _heavyAttackSpeedIncrease;
+        heavyAttackIncreases.Add(_heavyAttackDamageIncrease);
+        heavyAttackIncreases.Add(_heavyAttackRangeIncrease);
+        heavyAttackIncreases.Add(_heavyAttackSpeedIncrease);
 
         List<float> dashAttackIncreases = new List<float>();
-        dashAttackIncreases[0] = _dashAttackDamageIncrease;
-        dashAttackIncreases[1] = _dashAttackRangeIncrease;
-        dashAttackIncreases[2] = _dashAttackSpeedIncrease;
+        dashAttackIncreases.Add(_dashAttackDamageIncrease);
+        dashAttackIncreases.Add(_dashAttackRangeIncrease);
+        dashAttackIncreases.Add(_dashAttackSpeedIncrease);
 
         _attackIncreases.Add(lightAttackIncreases);
         _attackIncreases.Add(heavyAttackIncreases);
