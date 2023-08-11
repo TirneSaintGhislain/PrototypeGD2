@@ -44,31 +44,35 @@ public class AltLightAttsack : BaseAttack
 
     protected override void ActiveEvent()
     {
-        throw new System.NotImplementedException();
+        _attackSystem.HitDetection(_baseRange, _hitStunTime, _knockBackStrength, _attackDamage);
+        GetComponent<AudioSystem>().PlayLightAttack();
     }
 
     protected override void ActiveFinishedEvent()
     {
-        throw new System.NotImplementedException();
+        _attackSystem._event3.Invoke();
+        _attackSystem.InActiveFrames = false;
     }
 
     protected override void CooldownEvent()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     protected override void CooldownFinishedEvent()
     {
-        throw new System.NotImplementedException();
+        Cleanup();
     }
 
     protected override void StartupEvent()
     {
-        throw new System.NotImplementedException();
+
     }
 
     protected override void StartupFinishedEvent()
     {
-        throw new System.NotImplementedException();
+        _attackSystem._event2.Invoke();
+        _attackSystem.InStartupFrames = false;
+        _attackSystem.InActiveFrames = true;
     }
 }
