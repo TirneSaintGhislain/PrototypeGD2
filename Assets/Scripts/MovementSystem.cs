@@ -61,7 +61,7 @@ public class MovementSystem : MonoBehaviour
             direction = new Vector3(forwardDirection.x * distance, 0, forwardDirection.z * distance);
         }
         _rb.MovePosition(transform.position + direction);
-        Debug.Log(direction);
+        //Debug.Log(direction);
     }
 
     private void Update()

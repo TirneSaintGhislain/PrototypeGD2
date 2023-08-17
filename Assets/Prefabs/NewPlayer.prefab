@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 4160087034577734694}
   - component: {fileID: 4564255503657642744}
   - component: {fileID: 3124147503839026683}
+  - component: {fileID: 8029823347901003843}
   - component: {fileID: 8778341078881957426}
   - component: {fileID: 7202087771081101540}
   - component: {fileID: 2790993792597156145}
@@ -267,9 +268,9 @@ GameObject:
   - component: {fileID: 4160087034473877089}
   - component: {fileID: 4160087034473877102}
   - component: {fileID: 4160087034473877103}
+  - component: {fileID: 4427804576177202386}
   - component: {fileID: 5131859001704186225}
   - component: {fileID: 20067644494824937}
-  - component: {fileID: 4427804576177202386}
   m_Layer: 0
   m_Name: NewPlayer
   m_TagString: Player
@@ -468,6 +469,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fb007255-b4e8-4a51-bc8c-ec2470795773
     m_ActionName: Player/Rotation[/DualShock4GamepadHID/rightStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8029823347901003843}
+        m_TargetAssemblyTypeName: EvolutionPicker, Assembly-CSharp
+        m_MethodName: DPadLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 221f6c88-787f-4842-a231-25f8d11450ca
+    m_ActionName: Player/D-Pad Left
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8029823347901003843}
+        m_TargetAssemblyTypeName: EvolutionPicker, Assembly-CSharp
+        m_MethodName: DPadUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b2d8b7fb-d94f-4fe7-a35d-b495f8002271
+    m_ActionName: Player/D-Pad Up
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8029823347901003843}
+        m_TargetAssemblyTypeName: EvolutionPicker, Assembly-CSharp
+        m_MethodName: DPadRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6eb4dd77-1ad8-4af8-b671-063f85df596c
+    m_ActionName: Player/D-Pad Right
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -548,6 +597,22 @@ MonoBehaviour:
   _comboGoal: 3
   _unusedLimit: 3
   _comboCoolDown: 2
+--- !u!114 &8029823347901003843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160087034577734689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c056189fe62b82949bc44b3ecf7edd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerOneText: {fileID: 0}
+  _playerTwoText: {fileID: 0}
+  _chosenEvolutionIndex: 0
+  _chosenEvolution: Damage
 --- !u!114 &8778341078881957426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,6 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5760e63584117364bac4517276a29219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerIndex: 0
   _colorOptions:
   - {r: 0.19999997, g: 0.8784314, b: 0.4457322, a: 1}
   - {r: 0.5147525, g: 0.19999997, b: 0.8784314, a: 1}
@@ -679,6 +745,44 @@ MonoBehaviour:
   _noFollowUp: 0
   _baseRange: {x: 0, y: 0, z: 0}
   _currentRange: {x: 0, y: 0, z: 0}
+--- !u!114 &4427804576177202386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160087034577734689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da43cdde45de79543b5da048ccaa9361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aboutAttacks: 'This is the order of the values
+
+    0: Damage
+
+    1: Range
+
+    2:
+    Speed'
+  _lightAttackDamage: 1
+  _lightAttackRange: 2
+  _lightAttackSpeed: 1
+  _lightAttackDamageIncrease: 1
+  _lightAttackRangeIncrease: 0
+  _lightAttackSpeedIncrease: 0.8
+  _heavyAttackDamage: 2
+  _heavyAttackRange: 2
+  _heavyAttackSpeed: 1
+  _heavyAttackDamageIncrease: 2
+  _heavyAttackRangeIncrease: 1
+  _heavyAttackSpeedIncrease: 0.8
+  _dashAttackDamage: 1
+  _dashAttackRange: 1
+  _dashAttackSpeed: 0.8
+  _dashAttackDamageIncrease: 1
+  _dashAttackRangeIncrease: 1
+  _dashAttackSpeedIncrease: 0.7
 --- !u!114 &5131859001704186225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,44 +898,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4427804576177202386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4160087034577734689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da43cdde45de79543b5da048ccaa9361, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _aboutAttacks: 'This is the order of the values
-
-    0: Damage
-
-    1: Range
-
-    2:
-    Speed'
-  _lightAttackDamage: 1
-  _lightAttackRange: 2
-  _lightAttackSpeed: 1
-  _lightAttackDamageIncrease: 1
-  _lightAttackRangeIncrease: 0
-  _lightAttackSpeedIncrease: 0.8
-  _heavyAttackDamage: 2
-  _heavyAttackRange: 2
-  _heavyAttackSpeed: 1
-  _heavyAttackDamageIncrease: 2
-  _heavyAttackRangeIncrease: 1
-  _heavyAttackSpeedIncrease: 0.8
-  _dashAttackDamage: 1
-  _dashAttackRange: 1
-  _dashAttackSpeed: 0.8
-  _dashAttackDamageIncrease: 1
-  _dashAttackRangeIncrease: 1
-  _dashAttackSpeedIncrease: 0.7
 --- !u!1 &7558665328304905546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,6 +1218,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.0079
       objectReference: {fileID: 0}
+    - target: {fileID: -3256477391515123359, guid: 83007360d3840fa4196c7016163103c3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3308525
+      objectReference: {fileID: 0}
+    - target: {fileID: -3256477391515123359, guid: 83007360d3840fa4196c7016163103c3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5565798
+      objectReference: {fileID: 0}
+    - target: {fileID: -3256477391515123359, guid: 83007360d3840fa4196c7016163103c3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.41196808
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 83007360d3840fa4196c7016163103c3, type: 3}
       propertyPath: m_Name
       value: character 1
@@ -1183,28 +1261,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 83007360d3840fa4196c7016163103c3, type: 3}
   m_PrefabInstance: {fileID: 8339541259467794359}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &9186614567969987302 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 83007360d3840fa4196c7016163103c3, type: 3}
-  m_PrefabInstance: {fileID: 8339541259467794359}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6939487298255142234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9186614567969987302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5760e63584117364bac4517276a29219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colorOptions:
-  - {r: 0.19999997, g: 0.8784314, b: 0.4457322, a: 1}
-  - {r: 0.5147525, g: 0.19999997, b: 0.8784314, a: 1}
-  - {r: 1, g: 0.6468227, b: 0, a: 1}
-  _currentColorIndex: 0
 --- !u!1001 &9076734108967815725
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -212,7 +212,8 @@ public class EvolutionSystem : MonoBehaviour
         //        break;
         //}
         ////System 2
-        _attackValueManager.EvolveAttack(attackIndex, 0, true);
+        int evolutionIndex = GetComponent<EvolutionPicker>()._chosenEvolutionIndex;
+        _attackValueManager.EvolveAttack(attackIndex, evolutionIndex, true);
 
         GetComponent<AudioSystem>().PlayEvolvedSound();
     }

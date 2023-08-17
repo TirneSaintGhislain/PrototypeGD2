@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MultiplayerManager : MonoBehaviour
 {
+    [HideInInspector]
+    public int _playerIndex = 0;
+
     [SerializeField]
     private List<Color> _colorOptions = new List<Color>();
 
@@ -28,6 +31,12 @@ public class MultiplayerManager : MonoBehaviour
                 hitstunSystem._defaultColor = _colorOptions[colorIndex];
             }
         }
+
+        //Gets all the players
+        MultiplayerManager[] allPlayers = FindObjectsOfType<MultiplayerManager>();
+        //Sets the player's index
+        _playerIndex = allPlayers.Length - 1;
+        //Debug.Log(_playerIndex);
 
         // Increment the current color index for the next instance of MultiplayerManager
         _currentColorIndex++;
