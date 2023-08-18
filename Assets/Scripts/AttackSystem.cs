@@ -96,6 +96,8 @@ public class AttackSystem : MonoBehaviour
         GetComponent<LightAttack>()._currentRange = GetComponent<LightAttack>()._baseRange * _attackValueManager._lightAttackRange;
         GetComponent<HeavyAttack>().Radius = _attackValueManager._heavyAttackRange;
         GetComponent<DashAttack>()._currentRange = GetComponent<DashAttack>()._baseRange * _attackValueManager._dashAttackRange;
+
+        Debug.Log(GetComponent<LightAttack>()._currentRange);
     }
 
     void ChangeMovement()

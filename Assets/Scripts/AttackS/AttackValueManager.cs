@@ -51,12 +51,6 @@ public class AttackValueManager : MonoBehaviour
         _attackSystem = GetComponent<AttackSystem>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void EvolveAttack(int attackIndex, int parameterIndex, bool evolves)
     {
         //We get the current attack parameter and the value it should change by
@@ -101,6 +95,7 @@ public class AttackValueManager : MonoBehaviour
             }
         }
 
+        UpdateAttackValues();
         _attackSystem.UpdateAttackValues();
     }
 

@@ -609,8 +609,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c056189fe62b82949bc44b3ecf7edd23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerOneText: {fileID: 0}
-  _playerTwoText: {fileID: 0}
   _chosenEvolutionIndex: 0
   _chosenEvolution: Damage
 --- !u!114 &8778341078881957426
@@ -699,7 +697,7 @@ MonoBehaviour:
   _attackDamage: 0
   _hitStunTime: 0.1
   _knockBackStrength: 500
-  _baseRange: {x: 0, y: 0, z: 0}
+  _baseRange: {x: 1, y: 0.5, z: 0.5}
   _currentRange: {x: 0, y: 0, z: 0}
 --- !u!114 &4160087034473877102
 MonoBehaviour:
@@ -743,7 +741,7 @@ MonoBehaviour:
   _hitStunTime: 0.3
   _knockBackStrength: 300
   _noFollowUp: 0
-  _baseRange: {x: 0, y: 0, z: 0}
+  _baseRange: {x: 1, y: 1, z: 1}
   _currentRange: {x: 0, y: 0, z: 0}
 --- !u!114 &4427804576177202386
 MonoBehaviour:
@@ -769,7 +767,7 @@ MonoBehaviour:
   _lightAttackRange: 2
   _lightAttackSpeed: 1
   _lightAttackDamageIncrease: 1
-  _lightAttackRangeIncrease: 0
+  _lightAttackRangeIncrease: 0.2
   _lightAttackSpeedIncrease: 0.8
   _heavyAttackDamage: 2
   _heavyAttackRange: 2
