@@ -54,7 +54,7 @@ public class EvolutionPicker : MonoBehaviour
         }
         else if (GetComponent<MultiplayerManager>()._playerIndex == 1)
         {
-            _thisPlayerText = GameObject.FindGameObjectWithTag("1").GetComponent<TextMeshProUGUI>();
+            _thisPlayerText = GameObject.FindGameObjectWithTag("2").GetComponent<TextMeshProUGUI>();
         }
         Debug.Log(GetComponent<MultiplayerManager>()._playerIndex);
         UpdateText();

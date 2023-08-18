@@ -15,7 +15,7 @@ public class MultiplayerManager : MonoBehaviour
     private Renderer[] _allPlayerRenderers;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Get all the Renderer components attached to this GameObject
         _allPlayerRenderers = GetComponentsInChildren<Renderer>();
@@ -36,7 +36,7 @@ public class MultiplayerManager : MonoBehaviour
         MultiplayerManager[] allPlayers = FindObjectsOfType<MultiplayerManager>();
         //Sets the player's index
         _playerIndex = allPlayers.Length - 1;
-        //Debug.Log(_playerIndex);
+        Debug.Log(_playerIndex);
 
         // Increment the current color index for the next instance of MultiplayerManager
         _currentColorIndex++;
