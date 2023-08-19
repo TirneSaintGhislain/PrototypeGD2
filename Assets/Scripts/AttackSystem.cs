@@ -71,6 +71,11 @@ public class AttackSystem : MonoBehaviour
     [SerializeField]
     private List<GameObject> _attackVFXs;
 
+    public bool AlternateLightAttack { get; set; }
+    public bool AlternateHeavyAttack { get; set; }
+    public bool AlternateDashAttack { get; set; }
+
+
     void Awake()
     {
         _evolutionSystem = GetComponent<EvolutionSystem>();
@@ -80,6 +85,8 @@ public class AttackSystem : MonoBehaviour
         InActiveFrames = false;
 
         _attackValueManager = GetComponent<AttackValueManager>();
+        AttackSelection AS = FindObjectOfType<AttackSelection>();
+        AS.SelectAttacks(this, GetComponent<MovementSystem>());
     }
     private void Update()
     {
@@ -89,15 +96,42 @@ public class AttackSystem : MonoBehaviour
 
     public void UpdateAttackValues()
     {
-        GetComponent<LightAttack>()._attackDamage = _attackValueManager._lightAttackDamage;
-        GetComponent<HeavyAttack>()._attackDamage = _attackValueManager._heavyAttackDamage;
-        GetComponent<DashAttack>()._attackDamage = _attackValueManager._dashAttackDamage;
+        if(AlternateLightAttack)
+        {
+            GetComponent<AltLightAttack>()._attackDamage = _attackValueManager._lightAttackDamage;
+            
+        }
+        else
+        {
+            GetComponent<LightAttack>()._attackDamage = _attackValueManager._lightAttackDamage;
+        }
 
-        GetComponent<LightAttack>()._currentRange = GetComponent<LightAttack>()._baseRange * _attackValueManager._lightAttackRange;
-        GetComponent<HeavyAttack>().Radius = _attackValueManager._heavyAttackRange;
-        GetComponent<DashAttack>()._currentRange = GetComponent<DashAttack>()._baseRange * _attackValueManager._dashAttackRange;
+        if (AlternateHeavyAttack)
+        {
+            GetComponent<AltHeavyAttack>()._attackDamage = _attackValueManager._heavyAttackDamage;
+        }
+        else
+        {
+            GetComponent<HeavyAttack>()._attackDamage = _attackValueManager._heavyAttackDamage;
+        }
 
-        Debug.Log(GetComponent<LightAttack>()._currentRange);
+        if (AlternateDashAttack)
+        {
+            GetComponent<AltDashAttack>()._attackDamage = _attackValueManager._dashAttackDamage;
+        }
+        else
+        {
+            GetComponent<DashAttack>()._attackDamage = _attackValueManager._dashAttackDamage;
+        }
+        //GetComponent<LightAttack>()._attackDamage = _attackValueManager._lightAttackDamage;
+        //GetComponent<HeavyAttack>()._attackDamage = _attackValueManager._heavyAttackDamage;
+        //GetComponent<DashAttack>()._attackDamage = _attackValueManager._dashAttackDamage;
+
+        //GetComponent<LightAttack>()._currentRange = GetComponent<LightAttack>()._baseRange * _attackValueManager._lightAttackRange;
+        //GetComponent<HeavyAttack>().Radius = _attackValueManager._heavyAttackRange;
+        //GetComponent<DashAttack>()._currentRange = GetComponent<DashAttack>()._baseRange * _attackValueManager._dashAttackRange;
+
+        //Debug.Log(GetComponent<LightAttack>()._currentRange);
     }
 
     void ChangeMovement()

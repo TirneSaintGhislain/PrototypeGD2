@@ -80,18 +80,42 @@ public class AttackValueManager : MonoBehaviour
         {
             if (evolves)
             {
-                switch (attackIndex)
+                if(_attackSystem.AlternateLightAttack)
                 {
-                    case 0:
-                        GetComponent<LightAttack>().ChangeAttackSpeed(_attackIncreases[0][2]);
-                        break;
-                    case 1:
-                        GetComponent<HeavyAttack>().ChangeAttackSpeed(_attackIncreases[1][2]);
-                        break;
-                    case 2:
-                        GetComponent<DashAttack>().ChangeAttackSpeed(_attackIncreases[2][2]);
-                        break;
+                    GetComponent<AltLightAttack>().ChangeAttackSpeed(_attackIncreases[0][2]);
                 }
+                else
+                {
+                    GetComponent<LightAttack>().ChangeAttackSpeed(_attackIncreases[0][2]);
+                }
+                if (_attackSystem.AlternateHeavyAttack)
+                {
+                    GetComponent<AltHeavyAttack>().ChangeAttackSpeed(_attackIncreases[1][2]);
+                }
+                else
+                {
+                    GetComponent<HeavyAttack>().ChangeAttackSpeed(_attackIncreases[1][2]);
+                }
+                if (_attackSystem.AlternateDashAttack)
+                {
+                    GetComponent<AltDashAttack>().ChangeAttackSpeed(_attackIncreases[2][2]);
+                }
+                else
+                {
+                    GetComponent<DashAttack>().ChangeAttackSpeed(_attackIncreases[2][2]);
+                }
+                //switch (attackIndex)
+                //{
+                //    case 0:
+                //        GetComponent<LightAttack>().ChangeAttackSpeed(_attackIncreases[0][2]);
+                //        break;
+                //    case 1:
+                //        GetComponent<HeavyAttack>().ChangeAttackSpeed(_attackIncreases[1][2]);
+                //        break;
+                //    case 2:
+                //        GetComponent<DashAttack>().ChangeAttackSpeed(_attackIncreases[2][2]);
+                //        break;
+                //}
             }
         }
 

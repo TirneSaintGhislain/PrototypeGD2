@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AltLightAttsack : BaseAttack
+public class AltLightAttack : BaseAttack
 {
     [SerializeField]
     private float _hitStunTime;
@@ -18,7 +18,7 @@ public class AltLightAttsack : BaseAttack
 
     public override void StartAttack(InputAction.CallbackContext context)
     {
-        if (context.started & !_attackSystem.ActiveAttack)
+        if (context.started & !_attackSystem.ActiveAttack && _attackSystem.AlternateLightAttack)
         {
             _attackSystem._event1 += StartStartup;
             _attackSystem._event2 += StartActive;

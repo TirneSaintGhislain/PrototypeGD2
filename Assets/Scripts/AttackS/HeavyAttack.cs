@@ -21,7 +21,7 @@ public class HeavyAttack : BaseAttack
     }
     public override void StartAttack(InputAction.CallbackContext context)
     {
-        if (context.started & !_attackSystem.ActiveAttack)
+        if (context.started & !_attackSystem.ActiveAttack &! _attackSystem.AlternateHeavyAttack)
         {
             _attackSystem._event1 += StartStartup;
             _attackSystem._event2 += StartActive;

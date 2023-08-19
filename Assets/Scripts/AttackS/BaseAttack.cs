@@ -21,6 +21,7 @@ public abstract class BaseAttack : MonoBehaviour
     protected AttackTypes _thisAttackType;
 
     public int AttackDamage { get => _attackDamage; set => _attackDamage = value; }
+    public bool AttackEnabled { get; set; }
 
     [HideInInspector]
     public int _attackDamage;

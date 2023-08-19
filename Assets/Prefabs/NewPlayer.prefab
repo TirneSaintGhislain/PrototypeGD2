@@ -271,6 +271,9 @@ GameObject:
   - component: {fileID: 4427804576177202386}
   - component: {fileID: 5131859001704186225}
   - component: {fileID: 20067644494824937}
+  - component: {fileID: 5738047526929098617}
+  - component: {fileID: 8242621838160378215}
+  - component: {fileID: 8845754798439641353}
   m_Layer: 0
   m_Name: NewPlayer
   m_TagString: Player
@@ -419,6 +422,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8845754798439641353}
+        m_TargetAssemblyTypeName: AltDashAttack, Assembly-CSharp
+        m_MethodName: StartAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: abac1424-692b-4366-8c8a-b944d30af16d
     m_ActionName: Player/Attack North[/SwitchProControllerHID/buttonNorth,/XInputControllerWindows/buttonNorth]
   - m_PersistentCalls:
@@ -435,12 +450,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5738047526929098617}
+        m_TargetAssemblyTypeName: AltLightAttack, Assembly-CSharp
+        m_MethodName: StartAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b71bd2a4-c580-4128-b4c9-994d6dcf24dc
     m_ActionName: Player/Attack East[/SwitchProControllerHID/buttonEast,/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4160087034473877102}
         m_TargetAssemblyTypeName: HeavyAttack, Assembly-CSharp
+        m_MethodName: StartAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8242621838160378215}
+        m_TargetAssemblyTypeName: AltHeavyAttack, Assembly-CSharp
         m_MethodName: StartAttack
         m_Mode: 0
         m_Arguments:
@@ -896,6 +935,69 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5738047526929098617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160087034577734689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4004b099fb60934a84d7a0a71fca6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startupFrames: 10
+  _activeFrames: 10
+  _cooldownFrames: 10
+  _thisAttackType: 0
+  _attackDamage: 0
+  _hitStunTime: 1
+  _knockBackStrength: 1
+  _baseRange: {x: 2, y: 2, z: 4}
+  _currentRange: {x: 0, y: 0, z: 0}
+--- !u!114 &8242621838160378215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160087034577734689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c1956a4ce5304a84f247c6cd20b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startupFrames: 20
+  _activeFrames: 20
+  _cooldownFrames: 20
+  _thisAttackType: 1
+  _attackDamage: 0
+  _hitStunTime: 1
+  _knockBackStrength: 1
+  _baseRange: {x: 8, y: 2, z: 2}
+  _currentRange: {x: 0, y: 0, z: 0}
+--- !u!114 &8845754798439641353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160087034577734689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e0ffb75d3a542409914eb8e1da2f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startupFrames: 0
+  _activeFrames: 0
+  _cooldownFrames: 0
+  _thisAttackType: 2
+  _attackDamage: 0
+  _dashFrameDuration: 20
+  _dashBaseDistance: 2
+  _hitStunTime: 1
+  _knockBackStrength: 1
 --- !u!1 &7558665328304905546
 GameObject:
   m_ObjectHideFlags: 0

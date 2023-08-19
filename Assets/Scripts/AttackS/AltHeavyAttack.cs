@@ -14,7 +14,7 @@ public class AltHeavyAttack : BaseAttack
 
     //public float Radius { get; set; }
 
-    [Header("Light Attack Hitbox")]
+    [Header("Alt Heavy Attack Hitbox")]
     [SerializeField]
     public Vector3 _baseRange;
     [HideInInspector]
@@ -27,7 +27,7 @@ public class AltHeavyAttack : BaseAttack
     //}
     public override void StartAttack(InputAction.CallbackContext context)
     {
-        if (context.started & !_attackSystem.ActiveAttack)
+        if (context.started & !_attackSystem.ActiveAttack && _attackSystem.AlternateHeavyAttack)
         {
             _attackSystem._event1 += StartStartup;
             _attackSystem._event2 += StartActive;

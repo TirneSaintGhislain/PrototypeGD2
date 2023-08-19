@@ -30,7 +30,7 @@ public class LightAttack : BaseAttack
 
     public override void StartAttack(InputAction.CallbackContext context)
     {
-        if (context.started & !_attackSystem.ActiveAttack)
+        if (context.started & !_attackSystem.ActiveAttack &! _attackSystem.AlternateLightAttack)
         {
             _attackSystem._event1 += StartStartup;
             _attackSystem._event2 += StartActive;
