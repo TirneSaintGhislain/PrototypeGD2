@@ -25,8 +25,7 @@ public class AltDashAttack : BaseAttack
         if (context.started & !_attackSystem.ActiveAttack && _attackSystem.AlternateDashAttack)
         {
             _attackSystem._event1 += Dash;
-            _attackSystem._event2 += StartActive;
-            _attackSystem._event3 += StartCooldown;
+            _attackSystem._event2 += StartCooldown;
             _attackSystem.ActiveAttack = true;
             _attackSystem.CurrentAttackType = _thisAttackType;
             _attackSystem._event1.Invoke();
@@ -38,6 +37,16 @@ public class AltDashAttack : BaseAttack
     {
         base.Start();
         _movementSystem = GetComponent<MovementSystem>();
+    }
+
+    protected override void Cleanup()
+    {
+        base.Cleanup();
+        _attackSystem._event1 -= Dash;
+        _attackSystem._event2 -= StartCooldown;
+        CapsuleCollider col = GetComponent<CapsuleCollider>();
+        col.isTrigger = false;
+        _attackSystem.EnableMovement();
     }
 
     private void Dash()
@@ -60,12 +69,12 @@ public class AltDashAttack : BaseAttack
         col.isTrigger = false;
         _canCollide = false;
         _hitAnAttack = false;
-        Cleanup();
+        _attackSystem._event2.Invoke();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.GetComponent<HealthSystem>() != null && collision.gameObject != gameObject && _canCollide)
+        if(collision.gameObject.GetComponent<HealthSystem>() != null && collision.gameObject != gameObject && _canCollide &! _hitAnAttack)
         {
             collision.gameObject.GetComponent<HealthSystem>().GetHit(_attackDamage, _hitStunTime, _knockBackStrength);
             _evolutionSystem.SuccesfulHit((int)_thisAttackType);
@@ -90,7 +99,7 @@ public class AltDashAttack : BaseAttack
 
     protected override void CooldownFinishedEvent()
     {
-        
+        Cleanup();
     }
 
     protected override void StartupEvent()

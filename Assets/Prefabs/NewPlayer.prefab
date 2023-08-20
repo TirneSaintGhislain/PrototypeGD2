@@ -954,7 +954,7 @@ MonoBehaviour:
   _attackDamage: 0
   _hitStunTime: 1
   _knockBackStrength: 1
-  _baseRange: {x: 2, y: 2, z: 4}
+  _baseRange: {x: 1, y: 0.5, z: 1.5}
   _currentRange: {x: 0, y: 0, z: 0}
 --- !u!114 &8242621838160378215
 MonoBehaviour:
@@ -975,7 +975,7 @@ MonoBehaviour:
   _attackDamage: 0
   _hitStunTime: 1
   _knockBackStrength: 1
-  _baseRange: {x: 8, y: 2, z: 2}
+  _baseRange: {x: 4, y: 1, z: 1}
   _currentRange: {x: 0, y: 0, z: 0}
 --- !u!114 &8845754798439641353
 MonoBehaviour:
@@ -991,11 +991,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startupFrames: 0
   _activeFrames: 0
-  _cooldownFrames: 0
+  _cooldownFrames: 15
   _thisAttackType: 2
   _attackDamage: 0
   _dashFrameDuration: 20
-  _dashBaseDistance: 2
+  _dashBaseDistance: 6
   _hitStunTime: 1
   _knockBackStrength: 1
 --- !u!1 &7558665328304905546
