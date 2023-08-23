@@ -72,11 +72,11 @@ public class AltDashAttack : BaseAttack
         _attackSystem._event2.Invoke();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.GetComponent<HealthSystem>() != null && collision.gameObject != gameObject && _canCollide &! _hitAnAttack)
+        if (other.gameObject.GetComponent<HealthSystem>() != null && other.gameObject != gameObject && _canCollide & !_hitAnAttack)
         {
-            collision.gameObject.GetComponent<HealthSystem>().GetHit(_attackDamage, _hitStunTime, _knockBackStrength);
+            other.gameObject.GetComponent<HealthSystem>().GetHit(_attackDamage, _hitStunTime, _knockBackStrength);
             _evolutionSystem.SuccesfulHit((int)_thisAttackType);
             _hitAnAttack = true;
         }

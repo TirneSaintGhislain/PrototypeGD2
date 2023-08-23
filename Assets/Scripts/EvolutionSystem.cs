@@ -61,6 +61,8 @@ public class EvolutionSystem : MonoBehaviour
 
     private AttackValueManager _attackValueManager;
 
+    private EvolutionUI _evolutionUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +79,17 @@ public class EvolutionSystem : MonoBehaviour
         }
 
         _attackValueManager = GetComponent<AttackValueManager>();
+
+        if (GetComponent<MultiplayerManager>()._playerIndex == 0)
+        {
+            GameObject go = GameObject.FindGameObjectWithTag("3");
+            _evolutionUI = go.GetComponent<EvolutionUI>();
+        }
+        else
+        {
+            GameObject go = GameObject.FindGameObjectWithTag("4");
+            _evolutionUI = go.GetComponent<EvolutionUI>();
+        }
     }
 
     private void Update()
@@ -162,10 +175,46 @@ public class EvolutionSystem : MonoBehaviour
             if (i == attackIndex)
             {
                 _attackRatings[i] += _attackRatingIncrease;
+                switch (attackIndex)
+                {
+                    case 0:
+                        {
+                            _evolutionUI.UpdateLightAttack(true);
+                        }
+                        break;
+                    case 1:
+                        {
+                            _evolutionUI.UpdateHeavyAttack(true);
+                        }
+                        break;
+                    case 2:
+                        {
+                            _evolutionUI.UpdateDashAttack(true);
+                        }
+                        break;
+                }
             }
             else
             {
                 _attackRatings[i] -= _attackRatingDecrease;
+                switch(attackIndex)
+                {
+                    case 0:
+                        {
+                            _evolutionUI.UpdateLightAttack(false);
+                        }
+                        break;
+                    case 1:
+                        {
+                            _evolutionUI.UpdateHeavyAttack(false);
+                        }
+                        break;
+                    case 2:
+                        {
+                            _evolutionUI.UpdateDashAttack(false);
+                        }
+                        break;
+                }
             }
         }
 

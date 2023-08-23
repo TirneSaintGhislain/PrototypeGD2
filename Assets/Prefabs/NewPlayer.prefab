@@ -620,7 +620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e3d263fc48704478b7fda0a39f15f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _usingMethod1: 0
+  _usingMethod1: 1
   _amountOfAttacks: 3
   _attackCoolDown: 0.2
   _lightHitsIncrease: 1
@@ -736,7 +736,7 @@ MonoBehaviour:
   _attackDamage: 0
   _hitStunTime: 0.1
   _knockBackStrength: 500
-  _baseRange: {x: 1, y: 0.5, z: 0.5}
+  _baseRange: {x: 2, y: 0.5, z: 0.5}
   _currentRange: {x: 0, y: 0, z: 0}
 --- !u!114 &4160087034473877102
 MonoBehaviour:
@@ -751,8 +751,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startupFrames: 20
-  _activeFrames: 30
-  _cooldownFrames: 20
+  _activeFrames: 20
+  _cooldownFrames: 30
   _thisAttackType: 1
   _attackDamage: 0
   _hitStunTime: 0.5
