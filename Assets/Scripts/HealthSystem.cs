@@ -24,7 +24,7 @@ public class HealthSystem : MonoBehaviour
         _currentHealth = healthMax;
         _healthSystemUI = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthSystemUI>();
         _healthSystemUI.FindPlayerHealthSystem();
-        _playerIndex = GetComponent<MultiplayerManager>()._currentColorIndex;
+        //_playerIndex = GetComponent<MultiplayerManager>()._currentColorIndex;
     }
 
     // Update is called once per frame

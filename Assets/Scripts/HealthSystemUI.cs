@@ -31,32 +31,36 @@ public class HealthSystemUI : MonoBehaviour
 
     void Update()
     {
-        if(player1HealthSystem != null&& player2HealthSystem != null)
+        if (player1HealthSystem != null && player2HealthSystem != null)
         {
-// Calculate the normalized value for the slider based on the players' health
-        float normalizedValue = CalculateNormalizedHealth();
+            // Calculate the normalized value for the slider based on the players' health
+            float normalizedValue = CalculateNormalizedHealth();
 
-        // Set the Slider's value to the normalized value
-        healthBarSlider.value = normalizedValue;
+            // Check if the slider's value reaches the minimum or maximum
+            if (healthBarSlider.value <= healthBarSlider.minValue)
+            {
+                healthBarSlider.minValue = normalizedValue - 1;
+               
+            }
+            else if (healthBarSlider.value >= healthBarSlider.maxValue)
+            {
+                healthBarSlider.maxValue = normalizedValue + 1;
+            }
+
+            // Set the Slider's value to the normalized value
+            healthBarSlider.value = normalizedValue;
         }
     }
-        
+
+
 
     private float CalculateNormalizedHealth()
     {
-        
         // Calculate the total health of both players
         float totalHealth = player1HealthSystem._currentHealth - player2HealthSystem._currentHealth;
 
-        // Calculate the normalized value based on the total health and max health
-        // Divide by 20 (maxHealth * 2) to get a range from -1 to 1
         float normalizedValue = totalHealth; /// (maxHealth*2);
-
-        // The slider should move towards one direction based on the difference between the players' health
-        // If player 1 has more health, the slider will move towards the right (1).
-        // If player 2 has more health, the slider will move towards the left (-1).
-        // If both players have the same health, the slider will be in the middle (0).
-
         return normalizedValue;
     }
+
 }

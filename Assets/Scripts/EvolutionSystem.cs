@@ -85,7 +85,7 @@ public class EvolutionSystem : MonoBehaviour
             GameObject go = GameObject.FindGameObjectWithTag("3");
             _evolutionUI = go.GetComponent<EvolutionUI>();
         }
-        else
+        else if(GetComponent<MultiplayerManager>()._playerIndex == 1)
         {
             GameObject go = GameObject.FindGameObjectWithTag("4");
             _evolutionUI = go.GetComponent<EvolutionUI>();

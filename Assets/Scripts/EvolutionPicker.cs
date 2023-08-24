@@ -13,6 +13,16 @@ public class EvolutionPicker : MonoBehaviour
 
     [HideInInspector]
     public string _chosenEvolution = "Damage";
+
+    // Reference to the MultiplayerManager
+    private MultiplayerManager _multiplayerManager;
+
+    private void Awake()
+    {
+        // Get the MultiplayerManager component
+        _multiplayerManager = GetComponent<MultiplayerManager>();
+    }
+
     public void DPadLeft(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -43,20 +53,32 @@ public class EvolutionPicker : MonoBehaviour
 
     private void UpdateText()
     {
-        _thisPlayerText.text = _chosenEvolution;
+        if (_thisPlayerText != null)
+        {
+            _thisPlayerText.text = _chosenEvolution;
+        }
+        else
+        {
+            Debug.LogWarning("Text component is not assigned for EvolutionPicker.");
+        }
     }
 
     private void Start()
     {
-        if (GetComponent<MultiplayerManager>()._playerIndex == 0)
+        if (_multiplayerManager._playerIndex == 0)
         {
             _thisPlayerText = GameObject.FindGameObjectWithTag("1").GetComponent<TextMeshProUGUI>();
         }
-        else if (GetComponent<MultiplayerManager>()._playerIndex == 1)
+        else if (_multiplayerManager._playerIndex == 1)
         {
             _thisPlayerText = GameObject.FindGameObjectWithTag("2").GetComponent<TextMeshProUGUI>();
         }
-        Debug.Log(GetComponent<MultiplayerManager>()._playerIndex);
+        else
+        {
+            Debug.LogWarning("Player index out of bounds for EvolutionPicker.");
+        }
+
+        Debug.Log(_multiplayerManager._playerIndex);
         UpdateText();
     }
 }

@@ -24,6 +24,8 @@ public class EvolutionUI : MonoBehaviour
     [SerializeField]
     private Text _dashAttackInfo;
 
+
+
     public void UpdateLightAttack(bool positive)
     {
         if(positive)

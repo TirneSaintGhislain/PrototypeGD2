@@ -15,13 +15,11 @@ public class HitstunSystem : MonoBehaviour
     [HideInInspector]
     public bool _isStunned = false;
 
-    [HideInInspector]
-    public Color _defaultColor;
+    [SerializeField]
+    private GameObject playerModel;
 
-    private void Start()
-    {
-        _defaultColor = GetComponent<Renderer>().material.color;
-    }
+    [HideInInspector]
+    public Material _defaultMaterial; // Default material for the character
 
     public IEnumerator StartAttackCooldown()
     {
@@ -32,8 +30,12 @@ public class HitstunSystem : MonoBehaviour
 
     public IEnumerator StartHitStunTime(float stunTime)
     {
-        //Changes the player's color to show they're stunned
-        GetComponent<Renderer>().material.color = _stunnedColor;
+        // Change the color of all child renderers to show they're stunned
+        foreach (Renderer renderer in playerModel.GetComponentsInChildren<Renderer>())
+        {
+            renderer.material.color = _stunnedColor;
+        }
+
         GetComponent<DashAttack>().StopAttack();
 
         _canAttack = false;
@@ -41,7 +43,11 @@ public class HitstunSystem : MonoBehaviour
 
         yield return new WaitForSeconds(stunTime);
 
-        GetComponent<Renderer>().material.color = _defaultColor;
+        // Revert the material of all child renderers to the default material
+        foreach (Renderer renderer in playerModel.GetComponentsInChildren<Renderer>())
+        {
+            renderer.material = _defaultMaterial;
+        }
 
         _canAttack = true;
         _isStunned = false;

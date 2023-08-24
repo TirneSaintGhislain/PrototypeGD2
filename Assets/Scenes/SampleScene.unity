@@ -3335,7 +3335,7 @@ RectTransform:
   - {fileID: 535136971}
   - {fileID: 1649484838}
   m_Father: {fileID: 1672672077}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3969,8 +3969,8 @@ RectTransform:
   - {fileID: 623448604}
   - {fileID: 1708302007}
   - {fileID: 2003460269}
-  - {fileID: 1371717139}
   - {fileID: 1831955206}
+  - {fileID: 1371717139}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4211,7 +4211,7 @@ RectTransform:
   - {fileID: 814988742}
   - {fileID: 985673862}
   m_Father: {fileID: 1672672077}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -4249,7 +4249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0.21960786, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4719,7 +4719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 0.6039216, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5001,7 +5001,8 @@ MonoBehaviour:
   _stunnedColor: {r: 0, g: 0, b: 0, a: 0}
   _canAttack: 1
   _isStunned: 0
-  _defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  playerModel: {fileID: 0}
+  _defaultMaterial: {fileID: 0}
 --- !u!54 &5388997221962718776
 Rigidbody:
   m_ObjectHideFlags: 0
